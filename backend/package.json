@@ -1,0 +1,50 @@
+{
+  "name": "rb-expertise_backend",
+  "version": "1.0.0",
+  "description": "Graphql API for RB-Expertise Web App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "ts-node-dev --poll --transpile-only --no-notify src/index.ts",
+    "generate:migration": "npx prisma migrate dev",
+    "prisma:studio": "npx prisma studio",
+    "build": "tsc",
+    "prettier": "prettier 'src/**/*.ts'",
+    "prettier:fix": "prettier --write 'src/**/*.ts'",
+    "eslint": "eslint 'src/**/*.ts'",
+    "eslint:fix": "eslint --fix 'src/**/*.ts'"
+  },
+  "author": "Firas Jaber",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^3.0.2",
+    "apollo-server": "^3.3.0",
+    "graphql": "^15.5.3",
+    "nexus": "^1.1.0",
+    "nexus-plugin-prisma": "^0.35.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "4.31.1",
+    "@typescript-eslint/parser": "4.31.1",
+    "eslint": "7.32.0",
+    "eslint-config-airbnb": "18.2.1",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-prettier": "4.0.0",
+    "husky": "7.0.2",
+    "lint-staged": "11.1.2",
+    "prettier": "2.4.0",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.4.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "eslint --fix",
+      "git add"
+    ]
+  }
+}
