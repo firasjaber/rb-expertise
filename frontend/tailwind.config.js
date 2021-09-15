@@ -2,7 +2,16 @@ module.exports = {
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    fontFamily: {
+      nunito: ['"Nunito"', 'ui-sans-serif', 'system-ui'],
+    },
+    extend: {
+      colors: {
+        blue: {
+          bg: '#EEF2F9',
+        },
+      },
+    },
   },
   variants: {
     extend: {},
