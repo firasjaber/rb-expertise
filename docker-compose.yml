@@ -8,6 +8,37 @@ services:
       - database-data:/var/lib/postgresql/data/
     ports:
       - '8001:5432'
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: backend
+    depends_on:
+      - 'database'
+    links:
+      - database
+    expose:
+      - 4000
+    ports:
+      - 4000:4000
+    volumes:
+      - ./backend:/app
+    command: npm run dev
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    depends_on:
+      - 'database'
+    links:
+      - 'database'
+    ports:
+      - 3000:3000
+    volumes:
+      - './frontend:/app'
+    command: npm start
 
 volumes:
   database-data:
