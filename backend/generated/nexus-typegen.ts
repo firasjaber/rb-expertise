@@ -4,7 +4,7 @@
  */
 
 
-import type { Context } from "./src/context"
+import type { Context } from "./../src/context"
 
 
 declare global {
