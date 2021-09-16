@@ -34,6 +34,18 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  EmployeeCreateInput: { // input type
+    address: string; // String!
+    birthDate: NexusGenScalars['Date']; // Date!
+    city: string; // String!
+    email: string; // String!
+    endDate?: NexusGenScalars['Date'] | null; // Date
+    firstName: string; // String!
+    lastName: string; // String!
+    phone: string; // String!
+    region: string; // String!
+    startDate: NexusGenScalars['Date']; // Date!
+  }
 }
 
 export interface NexusGenEnums {
@@ -64,6 +76,7 @@ export interface NexusGenObjects {
     region?: string | null; // String
     startDate?: NexusGenScalars['Date'] | null; // Date
   }
+  Mutation: {};
   Query: {};
   User: { // root type
     id?: number | null; // Int
@@ -97,6 +110,9 @@ export interface NexusGenFieldTypes {
     region: string | null; // String
     startDate: NexusGenScalars['Date'] | null; // Date
   }
+  Mutation: { // field return type
+    createOneEmployee: NexusGenRootTypes['Employee'] | null; // Employee
+  }
   Query: { // field return type
     employee: NexusGenRootTypes['Employee'] | null; // Employee
     employees: Array<NexusGenRootTypes['Employee'] | null> | null; // [Employee]
@@ -124,6 +140,9 @@ export interface NexusGenFieldTypeNames {
     region: 'String'
     startDate: 'Date'
   }
+  Mutation: { // field return type name
+    createOneEmployee: 'Employee'
+  }
   Query: { // field return type name
     employee: 'Employee'
     employees: 'Employee'
@@ -136,6 +155,11 @@ export interface NexusGenFieldTypeNames {
 }
 
 export interface NexusGenArgTypes {
+  Mutation: {
+    createOneEmployee: { // args
+      data: NexusGenInputs['EmployeeCreateInput']; // EmployeeCreateInput!
+    }
+  }
   Query: {
     employee: { // args
       employeeId: number; // Int!
@@ -154,7 +178,7 @@ export interface NexusGenTypeInterfaces {
 
 export type NexusGenObjectNames = keyof NexusGenObjects;
 
-export type NexusGenInputNames = never;
+export type NexusGenInputNames = keyof NexusGenInputs;
 
 export type NexusGenEnumNames = never;
 

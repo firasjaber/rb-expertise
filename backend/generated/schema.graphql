@@ -23,6 +23,23 @@ type Employee {
   startDate: Date
 }
 
+input EmployeeCreateInput {
+  address: String!
+  birthDate: Date!
+  city: String!
+  email: String!
+  endDate: Date
+  firstName: String!
+  lastName: String!
+  phone: String!
+  region: String!
+  startDate: Date!
+}
+
+type Mutation {
+  createOneEmployee(data: EmployeeCreateInput!): Employee
+}
+
 type Query {
   employee(employeeId: Int!): Employee
   employees(searchQuery: String): [Employee]
