@@ -36,8 +36,23 @@ input EmployeeCreateInput {
   startDate: Date!
 }
 
+input EmployeeUpdateInput {
+  address: String!
+  birthDate: Date!
+  city: String!
+  email: String!
+  endDate: Date
+  firstName: String!
+  id: Int!
+  lastName: String!
+  phone: String!
+  region: String!
+  startDate: Date!
+}
+
 type Mutation {
   createOneEmployee(data: EmployeeCreateInput!): Employee
+  updateOneEmployee(data: EmployeeUpdateInput!): Employee
 }
 
 type Query {

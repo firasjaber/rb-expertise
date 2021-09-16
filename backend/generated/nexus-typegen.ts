@@ -46,6 +46,19 @@ export interface NexusGenInputs {
     region: string; // String!
     startDate: NexusGenScalars['Date']; // Date!
   }
+  EmployeeUpdateInput: { // input type
+    address: string; // String!
+    birthDate: NexusGenScalars['Date']; // Date!
+    city: string; // String!
+    email: string; // String!
+    endDate?: NexusGenScalars['Date'] | null; // Date
+    firstName: string; // String!
+    id: number; // Int!
+    lastName: string; // String!
+    phone: string; // String!
+    region: string; // String!
+    startDate: NexusGenScalars['Date']; // Date!
+  }
 }
 
 export interface NexusGenEnums {
@@ -112,6 +125,7 @@ export interface NexusGenFieldTypes {
   }
   Mutation: { // field return type
     createOneEmployee: NexusGenRootTypes['Employee'] | null; // Employee
+    updateOneEmployee: NexusGenRootTypes['Employee'] | null; // Employee
   }
   Query: { // field return type
     employee: NexusGenRootTypes['Employee'] | null; // Employee
@@ -142,6 +156,7 @@ export interface NexusGenFieldTypeNames {
   }
   Mutation: { // field return type name
     createOneEmployee: 'Employee'
+    updateOneEmployee: 'Employee'
   }
   Query: { // field return type name
     employee: 'Employee'
@@ -158,6 +173,9 @@ export interface NexusGenArgTypes {
   Mutation: {
     createOneEmployee: { // args
       data: NexusGenInputs['EmployeeCreateInput']; // EmployeeCreateInput!
+    }
+    updateOneEmployee: { // args
+      data: NexusGenInputs['EmployeeUpdateInput']; // EmployeeUpdateInput!
     }
   }
   Query: {
