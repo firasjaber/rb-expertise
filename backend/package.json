@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node-dev --poll --transpile-only --no-notify src/index.ts",
     "generate:migration": "npx prisma migrate dev",
-    "prisma:studio": "npx prisma studio",
+    "prisma:studio": "npxd prisma studio",
     "build": "tsc",
     "prettier": "prettier 'src/**/*.ts'",
     "prettier:fix": "prettier --write 'src/**/*.ts'",
@@ -20,10 +20,12 @@
     "@prisma/client": "^3.0.2",
     "apollo-server": "^3.3.0",
     "graphql": "^15.5.3",
+    "graphql-iso-date": "^3.6.1",
     "nexus": "^1.1.0",
     "nexus-plugin-prisma": "^0.35.0"
   },
   "devDependencies": {
+    "@types/graphql-iso-date": "^3.4.0",
     "@typescript-eslint/eslint-plugin": "4.31.1",
     "@typescript-eslint/parser": "4.31.1",
     "eslint": "7.32.0",
@@ -32,6 +34,7 @@
     "eslint-plugin-prettier": "4.0.0",
     "husky": "7.0.2",
     "lint-staged": "11.1.2",
+    "npxd": "^1.1.5",
     "prettier": "2.4.0",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.4.3"

@@ -5,8 +5,23 @@
 
 
 import type { Context } from "./../src/context"
-
-
+import type { core } from "nexus"
+declare global {
+  interface NexusGenCustomInputMethods<TypeName extends string> {
+    /**
+     * A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+     */
+    date<FieldName extends string>(fieldName: FieldName, opts?: core.CommonInputFieldConfig<TypeName, FieldName>): void // "Date";
+  }
+}
+declare global {
+  interface NexusGenCustomOutputMethods<TypeName extends string> {
+    /**
+     * A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+     */
+    date<FieldName extends string>(fieldName: FieldName, ...opts: core.ScalarOutSpread<TypeName, FieldName>): void // "Date";
+  }
+}
 declare global {
   interface NexusGenCustomOutputProperties<TypeName extends string> {
     model: NexusPrisma<TypeName, 'model'>
@@ -30,9 +45,25 @@ export interface NexusGenScalars {
   Float: number
   Boolean: boolean
   ID: string
+  Date: any
 }
 
 export interface NexusGenObjects {
+  Employee: { // root type
+    address?: string | null; // String
+    birthDate?: NexusGenScalars['Date'] | null; // Date
+    city?: string | null; // String
+    createdAt?: NexusGenScalars['Date'] | null; // Date
+    email?: string | null; // String
+    endDate?: NexusGenScalars['Date'] | null; // Date
+    firstName?: string | null; // String
+    id: number; // Int!
+    isAdmin?: boolean | null; // Boolean
+    lastName?: string | null; // String
+    phone?: string | null; // String
+    region?: string | null; // String
+    startDate?: NexusGenScalars['Date'] | null; // Date
+  }
   Query: {};
   User: { // root type
     id?: number | null; // Int
@@ -51,7 +82,24 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
+  Employee: { // field return type
+    address: string | null; // String
+    birthDate: NexusGenScalars['Date'] | null; // Date
+    city: string | null; // String
+    createdAt: NexusGenScalars['Date'] | null; // Date
+    email: string | null; // String
+    endDate: NexusGenScalars['Date'] | null; // Date
+    firstName: string | null; // String
+    id: number; // Int!
+    isAdmin: boolean | null; // Boolean
+    lastName: string | null; // String
+    phone: string | null; // String
+    region: string | null; // String
+    startDate: NexusGenScalars['Date'] | null; // Date
+  }
   Query: { // field return type
+    employee: NexusGenRootTypes['Employee'] | null; // Employee
+    employees: Array<NexusGenRootTypes['Employee'] | null> | null; // [Employee]
     me: string | null; // String
   }
   User: { // field return type
@@ -61,7 +109,24 @@ export interface NexusGenFieldTypes {
 }
 
 export interface NexusGenFieldTypeNames {
+  Employee: { // field return type name
+    address: 'String'
+    birthDate: 'Date'
+    city: 'String'
+    createdAt: 'Date'
+    email: 'String'
+    endDate: 'Date'
+    firstName: 'String'
+    id: 'Int'
+    isAdmin: 'Boolean'
+    lastName: 'String'
+    phone: 'String'
+    region: 'String'
+    startDate: 'Date'
+  }
   Query: { // field return type name
+    employee: 'Employee'
+    employees: 'Employee'
     me: 'String'
   }
   User: { // field return type name
@@ -71,6 +136,14 @@ export interface NexusGenFieldTypeNames {
 }
 
 export interface NexusGenArgTypes {
+  Query: {
+    employee: { // args
+      employeeId: number; // Int!
+    }
+    employees: { // args
+      searchQuery?: string | null; // String
+    }
+  }
 }
 
 export interface NexusGenAbstractTypeMembers {

@@ -2,12 +2,19 @@ version: '3'
 services:
   database:
     image: 'postgres'
+    container_name: postgres
     env_file:
       - database.env
     volumes:
       - database-data:/var/lib/postgresql/data/
+    expose:
+      - 8001
+      - 8002
     ports:
       - '8001:5432'
+      - '8002:5555' # this is for prisma studio
+    networks:
+      - main
   backend:
     build:
       context: ./backend
@@ -24,7 +31,8 @@ services:
     volumes:
       - ./backend:/app
     command: npm run dev
-
+    networks:
+      - main
   frontend:
     build:
       context: ./frontend
@@ -39,6 +47,12 @@ services:
     volumes:
       - './frontend:/app'
     command: npm start
-
+    networks:
+      - main
 volumes:
   database-data:
+
+networks:
+  main:
+    name: main
+    driver: bridge
