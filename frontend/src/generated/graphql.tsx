@@ -29,6 +29,7 @@ export type Employee = {
   isAdmin?: Maybe<Scalars['Boolean']>;
   lastName?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
+  pictureUrl?: Maybe<Scalars['String']>;
   region?: Maybe<Scalars['String']>;
   startDate?: Maybe<Scalars['Date']>;
 };
@@ -42,6 +43,7 @@ export type EmployeeCreateInput = {
   firstName: Scalars['String'];
   lastName: Scalars['String'];
   phone: Scalars['String'];
+  pictureUrl?: Maybe<Scalars['String']>;
   region: Scalars['String'];
   startDate: Scalars['Date'];
 };
@@ -56,6 +58,7 @@ export type EmployeeUpdateInput = {
   id: Scalars['Int'];
   lastName: Scalars['String'];
   phone: Scalars['String'];
+  pictureUrl?: Maybe<Scalars['String']>;
   region: Scalars['String'];
   startDate: Scalars['Date'];
 };
@@ -102,7 +105,7 @@ export type User = {
 export type GetEmployeesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetEmployeesQuery = { __typename?: 'Query', employees?: Maybe<Array<Maybe<{ __typename?: 'Employee', id: number, firstName?: Maybe<string>, lastName?: Maybe<string>, email?: Maybe<string> }>>> };
+export type GetEmployeesQuery = { __typename?: 'Query', employees?: Maybe<Array<Maybe<{ __typename?: 'Employee', id: number, firstName?: Maybe<string>, lastName?: Maybe<string>, email?: Maybe<string>, pictureUrl?: Maybe<string>, phone?: Maybe<string>, startDate?: Maybe<any> }>>> };
 
 
 export const GetEmployeesDocument = gql`
@@ -112,6 +115,9 @@ export const GetEmployeesDocument = gql`
     firstName
     lastName
     email
+    pictureUrl
+    phone
+    startDate
   }
 }
     `;

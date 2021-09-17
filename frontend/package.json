@@ -12,6 +12,7 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "date-fns": "^2.24.0",
     "framer-motion": "^4.1.17",
     "graphql": "^15.5.3",
     "react": "^17.0.2",
@@ -48,9 +49,11 @@
   },
   "devDependencies": {
     "@graphql-codegen/cli": "2.2.0",
+    "@graphql-codegen/introspection": "2.1.0",
     "@graphql-codegen/typescript": "2.2.2",
     "@graphql-codegen/typescript-operations": "2.1.4",
     "@graphql-codegen/typescript-react-apollo": "3.1.4",
+    "@types/date-fns": "^2.6.0",
     "@types/jest": "^26.0.15",
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.21",
@@ -58,7 +61,6 @@
     "@types/react-router-dom": "^5.1.9",
     "autoprefixer": "^9.8.6",
     "postcss": "^7.0.36",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.14",
-    "@graphql-codegen/introspection": "2.1.0"
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.14"
   }
 }

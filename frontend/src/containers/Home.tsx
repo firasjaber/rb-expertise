@@ -1,6 +1,6 @@
+import { Team } from 'pages';
 import { Route, Switch } from 'react-router-dom';
 import { Overview } from '../pages/Overview';
-import Team from '../pages/Team';
 
 interface Props {}
 

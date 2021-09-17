@@ -4,5 +4,8 @@ query GetEmployees {
     firstName
     lastName
     email
+    pictureUrl
+    phone
+    startDate
   }
 }
