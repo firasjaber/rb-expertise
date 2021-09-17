@@ -1,4 +1,4 @@
-import { extendType, nonNull, intArg, nullable, stringArg, booleanArg, inputObjectType, arg } from 'nexus';
+import { extendType, nonNull, inputObjectType, arg } from 'nexus';
 import { UserInputError } from 'apollo-server';
 
 export const EmployeeMutation = extendType({
@@ -32,7 +32,7 @@ export const EmployeeMutation = extendType({
         const { id, ...dataWithoutId } = data;
         const employeeExist = await ctx.prisma.employee.findUnique({ where: { id } });
 
-        if (!employeeExist) throw new UserInputError('Email already exists for another employee');
+        if (!employeeExist) throw new UserInputError('Employee not found to update');
         return ctx.prisma.employee.update({
           where: { id },
           data: {
