@@ -7,6 +7,7 @@ export const Employee = objectType({
     t.string('firstName');
     t.string('lastName');
     t.string('email');
+    t.string('pictureUrl');
     t.boolean('isAdmin');
     t.string('phone');
     t.date('birthDate');

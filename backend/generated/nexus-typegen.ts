@@ -43,6 +43,7 @@ export interface NexusGenInputs {
     firstName: string; // String!
     lastName: string; // String!
     phone: string; // String!
+    pictureUrl?: string | null; // String
     region: string; // String!
     startDate: NexusGenScalars['Date']; // Date!
   }
@@ -56,6 +57,7 @@ export interface NexusGenInputs {
     id: number; // Int!
     lastName: string; // String!
     phone: string; // String!
+    pictureUrl?: string | null; // String
     region: string; // String!
     startDate: NexusGenScalars['Date']; // Date!
   }
@@ -86,6 +88,7 @@ export interface NexusGenObjects {
     isAdmin?: boolean | null; // Boolean
     lastName?: string | null; // String
     phone?: string | null; // String
+    pictureUrl?: string | null; // String
     region?: string | null; // String
     startDate?: NexusGenScalars['Date'] | null; // Date
   }
@@ -120,6 +123,7 @@ export interface NexusGenFieldTypes {
     isAdmin: boolean | null; // Boolean
     lastName: string | null; // String
     phone: string | null; // String
+    pictureUrl: string | null; // String
     region: string | null; // String
     startDate: NexusGenScalars['Date'] | null; // Date
   }
@@ -151,6 +155,7 @@ export interface NexusGenFieldTypeNames {
     isAdmin: 'Boolean'
     lastName: 'String'
     phone: 'String'
+    pictureUrl: 'String'
     region: 'String'
     startDate: 'Date'
   }

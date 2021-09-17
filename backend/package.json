@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node-dev --poll --transpile-only --no-notify src/index.ts",
-    "generate:migration": "npx prisma migrate dev",
+    "generate:migration": "npxd prisma migrate dev",
     "prisma:studio": "npxd prisma studio",
     "build": "tsc",
     "prettier": "prettier 'src/**/*.ts'",

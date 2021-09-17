@@ -52,6 +52,7 @@ const EmployeeCreateInput = inputObjectType({
     t.nonNull.string('lastName');
     t.nonNull.string('email');
     t.nonNull.string('phone');
+    t.string('pictureUrl');
     t.nonNull.date('birthDate');
     t.nonNull.string('address');
     t.nonNull.string('city');
@@ -68,6 +69,7 @@ const EmployeeUpdateInput = inputObjectType({
     t.nonNull.string('firstName');
     t.nonNull.string('lastName');
     t.nonNull.string('email');
+    t.string('pictureUrl');
     t.nonNull.string('phone');
     t.nonNull.date('birthDate');
     t.nonNull.string('address');

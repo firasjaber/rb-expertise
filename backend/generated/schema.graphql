@@ -19,6 +19,7 @@ type Employee {
   isAdmin: Boolean
   lastName: String
   phone: String
+  pictureUrl: String
   region: String
   startDate: Date
 }
@@ -32,6 +33,7 @@ input EmployeeCreateInput {
   firstName: String!
   lastName: String!
   phone: String!
+  pictureUrl: String
   region: String!
   startDate: Date!
 }
@@ -46,6 +48,7 @@ input EmployeeUpdateInput {
   id: Int!
   lastName: String!
   phone: String!
+  pictureUrl: String
   region: String!
   startDate: Date!
 }
