@@ -1,0 +1,3 @@
+mutation DeleteOneEmployeeMutation($deleteOneEmployeeId: Int!) {
+  deleteOneEmployee(employeeId: $deleteOneEmployeeId)
+}

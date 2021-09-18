@@ -66,12 +66,18 @@ export type EmployeeUpdateInput = {
 export type Mutation = {
   __typename?: 'Mutation';
   createOneEmployee?: Maybe<Employee>;
+  deleteOneEmployee?: Maybe<Scalars['Boolean']>;
   updateOneEmployee?: Maybe<Employee>;
 };
 
 
 export type MutationCreateOneEmployeeArgs = {
   data: EmployeeCreateInput;
+};
+
+
+export type MutationDeleteOneEmployeeArgs = {
+  employeeId: Scalars['Int'];
 };
 
 
@@ -108,6 +114,13 @@ export type CreateOneEmployeeMutationVariables = Exact<{
 
 
 export type CreateOneEmployeeMutation = { __typename?: 'Mutation', createOneEmployee?: Maybe<{ __typename?: 'Employee', firstName?: Maybe<string>, pictureUrl?: Maybe<string>, email?: Maybe<string>, id: number, isAdmin?: Maybe<boolean>, phone?: Maybe<string>, birthDate?: Maybe<any>, address?: Maybe<string>, region?: Maybe<string>, city?: Maybe<string>, startDate?: Maybe<any>, endDate?: Maybe<any>, createdAt?: Maybe<any> }> };
+
+export type DeleteOneEmployeeMutationMutationVariables = Exact<{
+  deleteOneEmployeeId: Scalars['Int'];
+}>;
+
+
+export type DeleteOneEmployeeMutationMutation = { __typename?: 'Mutation', deleteOneEmployee?: Maybe<boolean> };
 
 export type GetEmployeeQueryVariables = Exact<{
   employeeId: Scalars['Int'];
@@ -167,6 +180,37 @@ export function useCreateOneEmployeeMutation(baseOptions?: Apollo.MutationHookOp
 export type CreateOneEmployeeMutationHookResult = ReturnType<typeof useCreateOneEmployeeMutation>;
 export type CreateOneEmployeeMutationResult = Apollo.MutationResult<CreateOneEmployeeMutation>;
 export type CreateOneEmployeeMutationOptions = Apollo.BaseMutationOptions<CreateOneEmployeeMutation, CreateOneEmployeeMutationVariables>;
+export const DeleteOneEmployeeMutationDocument = gql`
+    mutation DeleteOneEmployeeMutation($deleteOneEmployeeId: Int!) {
+  deleteOneEmployee(employeeId: $deleteOneEmployeeId)
+}
+    `;
+export type DeleteOneEmployeeMutationMutationFn = Apollo.MutationFunction<DeleteOneEmployeeMutationMutation, DeleteOneEmployeeMutationMutationVariables>;
+
+/**
+ * __useDeleteOneEmployeeMutationMutation__
+ *
+ * To run a mutation, you first call `useDeleteOneEmployeeMutationMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteOneEmployeeMutationMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteOneEmployeeMutationMutation, { data, loading, error }] = useDeleteOneEmployeeMutationMutation({
+ *   variables: {
+ *      deleteOneEmployeeId: // value for 'deleteOneEmployeeId'
+ *   },
+ * });
+ */
+export function useDeleteOneEmployeeMutationMutation(baseOptions?: Apollo.MutationHookOptions<DeleteOneEmployeeMutationMutation, DeleteOneEmployeeMutationMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteOneEmployeeMutationMutation, DeleteOneEmployeeMutationMutationVariables>(DeleteOneEmployeeMutationDocument, options);
+      }
+export type DeleteOneEmployeeMutationMutationHookResult = ReturnType<typeof useDeleteOneEmployeeMutationMutation>;
+export type DeleteOneEmployeeMutationMutationResult = Apollo.MutationResult<DeleteOneEmployeeMutationMutation>;
+export type DeleteOneEmployeeMutationMutationOptions = Apollo.BaseMutationOptions<DeleteOneEmployeeMutationMutation, DeleteOneEmployeeMutationMutationVariables>;
 export const GetEmployeeDocument = gql`
     query getEmployee($employeeId: Int!) {
   employee(employeeId: $employeeId) {

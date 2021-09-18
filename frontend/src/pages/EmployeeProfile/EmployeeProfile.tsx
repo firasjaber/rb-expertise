@@ -23,7 +23,11 @@ const EmployeeProfile = (props: Props) => {
         {error && error.message}
         {!error && (
           <div className='flex flex-col lg:space-x-6 lg:flex-row'>
-            <Profile loading={loading} employee={data?.employee} />
+            <Profile
+              loading={loading}
+              employee={data?.employee}
+              employeeId={employeeId}
+            />
             <div className='w-full flex mt-5 space-x-4 lg:space-x-0 lg:w-1/3 lg:block lg:space-y-6 lg:mt-0'>
               <Missions loading={loading} />
               <Appointments loading={loading} />

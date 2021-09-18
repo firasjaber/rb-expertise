@@ -1,15 +1,54 @@
 import { Avatar } from '@chakra-ui/avatar';
+import { Button } from '@chakra-ui/button';
 import { Skeleton } from '@chakra-ui/skeleton';
 import { InformationCircleIcon } from '@heroicons/react/solid';
 import { format } from 'date-fns';
-
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Text,
+  useDisclosure,
+} from '@chakra-ui/react';
+import {
+  GetEmployeesDocument,
+  useDeleteOneEmployeeMutationMutation,
+} from 'generated/graphql';
+import toast from 'react-hot-toast';
+import { useHistory } from 'react-router-dom';
 interface Props {
   loading: boolean;
+  employeeId?: string;
   //TODO: Fix this typing shit later
   employee: any;
 }
 
-const Profile = ({ loading, employee }: Props) => {
+const Profile = ({ loading, employee, employeeId }: Props) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [deleteOneEmployee, { loading: mutationLoading }] =
+    useDeleteOneEmployeeMutationMutation({
+      refetchQueries: [{ query: GetEmployeesDocument }],
+    });
+  const history = useHistory();
+
+  const handleDelete = async () => {
+    await deleteOneEmployee({
+      variables: { deleteOneEmployeeId: Number(employeeId) },
+    })
+      .then(() => {
+        onClose();
+        toast.success('Employee deleted succesfully!');
+        history.push('/team');
+      })
+      .catch(() => {
+        onClose();
+        toast.error('Error occured, try again...');
+      });
+  };
   return (
     <div className='bg-gray-50 w-full rounded-lg shadow-lg lg:w-2/3'>
       <div className='flex justify-between items-center font-semibold shadow-sm p-3 px-5 text-xl text-gray-700'>
@@ -77,6 +116,37 @@ const Profile = ({ loading, employee }: Props) => {
                 format(new Date(employee?.birthDate), 'do MMMM yyyy')}
             </li>
           </ul>
+          <div className='my-4 mt-6 space-x-4'>
+            <Button colorScheme='yellow'>Edit Employee</Button>
+            <Button colorScheme='red' onClick={onOpen}>
+              Delete Employee
+            </Button>
+            <Modal isOpen={isOpen} onClose={onClose}>
+              <ModalOverlay />
+              <ModalContent>
+                <ModalHeader>Delete Warning</ModalHeader>
+                <ModalCloseButton />
+                <ModalBody>
+                  <Text>
+                    Are you sure to delete <b>{employee?.firstName}</b> ?
+                  </Text>
+                </ModalBody>
+
+                <ModalFooter>
+                  <Button variant='ghost' mr={3} onClick={onClose}>
+                    Cancel
+                  </Button>
+                  <Button
+                    colorScheme='red'
+                    onClick={handleDelete}
+                    isLoading={mutationLoading}
+                  >
+                    Delete
+                  </Button>
+                </ModalFooter>
+              </ModalContent>
+            </Modal>
+          </div>
         </Skeleton>
       </div>
     </div>
