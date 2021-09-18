@@ -55,6 +55,7 @@ input EmployeeUpdateInput {
 
 type Mutation {
   createOneEmployee(data: EmployeeCreateInput!): Employee
+  deleteOneEmployee(employeeId: Int!): Boolean
   updateOneEmployee(data: EmployeeUpdateInput!): Employee
 }
 

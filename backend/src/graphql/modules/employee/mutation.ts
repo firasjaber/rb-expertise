@@ -1,4 +1,4 @@
-import { extendType, nonNull, inputObjectType, arg } from 'nexus';
+import { extendType, nonNull, inputObjectType, arg, intArg } from 'nexus';
 import { UserInputError } from 'apollo-server';
 
 export const EmployeeMutation = extendType({
@@ -40,6 +40,18 @@ export const EmployeeMutation = extendType({
             endDate: data.endDate ?? undefined,
           },
         });
+      },
+    });
+    t.field('deleteOneEmployee', {
+      type: 'Boolean',
+      args: {
+        employeeId: nonNull(intArg()),
+      },
+      async resolve(_root, args, ctx) {
+        const employee = await ctx.prisma.employee.findUnique({ where: { id: args.employeeId } });
+        if (!employee) throw new UserInputError('Employee not found to delete');
+        await ctx.prisma.employee.delete({ where: { id: args.employeeId } });
+        return true;
       },
     });
   },

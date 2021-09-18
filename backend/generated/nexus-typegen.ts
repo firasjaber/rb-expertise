@@ -129,6 +129,7 @@ export interface NexusGenFieldTypes {
   }
   Mutation: { // field return type
     createOneEmployee: NexusGenRootTypes['Employee'] | null; // Employee
+    deleteOneEmployee: boolean | null; // Boolean
     updateOneEmployee: NexusGenRootTypes['Employee'] | null; // Employee
   }
   Query: { // field return type
@@ -161,6 +162,7 @@ export interface NexusGenFieldTypeNames {
   }
   Mutation: { // field return type name
     createOneEmployee: 'Employee'
+    deleteOneEmployee: 'Boolean'
     updateOneEmployee: 'Employee'
   }
   Query: { // field return type name
@@ -178,6 +180,9 @@ export interface NexusGenArgTypes {
   Mutation: {
     createOneEmployee: { // args
       data: NexusGenInputs['EmployeeCreateInput']; // EmployeeCreateInput!
+    }
+    deleteOneEmployee: { // args
+      employeeId: number; // Int!
     }
     updateOneEmployee: { // args
       data: NexusGenInputs['EmployeeUpdateInput']; // EmployeeUpdateInput!
