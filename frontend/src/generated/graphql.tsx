@@ -109,6 +109,13 @@ export type CreateOneEmployeeMutationVariables = Exact<{
 
 export type CreateOneEmployeeMutation = { __typename?: 'Mutation', createOneEmployee?: Maybe<{ __typename?: 'Employee', firstName?: Maybe<string>, pictureUrl?: Maybe<string>, email?: Maybe<string>, id: number, isAdmin?: Maybe<boolean>, phone?: Maybe<string>, birthDate?: Maybe<any>, address?: Maybe<string>, region?: Maybe<string>, city?: Maybe<string>, startDate?: Maybe<any>, endDate?: Maybe<any>, createdAt?: Maybe<any> }> };
 
+export type GetEmployeeQueryVariables = Exact<{
+  employeeId: Scalars['Int'];
+}>;
+
+
+export type GetEmployeeQuery = { __typename?: 'Query', employee?: Maybe<{ __typename?: 'Employee', firstName?: Maybe<string>, email?: Maybe<string>, lastName?: Maybe<string>, pictureUrl?: Maybe<string>, phone?: Maybe<string>, birthDate?: Maybe<any>, address?: Maybe<string>, city?: Maybe<string>, region?: Maybe<string>, startDate?: Maybe<any>, endDate?: Maybe<any>, createdAt?: Maybe<any> }> };
+
 export type GetEmployeesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -160,6 +167,52 @@ export function useCreateOneEmployeeMutation(baseOptions?: Apollo.MutationHookOp
 export type CreateOneEmployeeMutationHookResult = ReturnType<typeof useCreateOneEmployeeMutation>;
 export type CreateOneEmployeeMutationResult = Apollo.MutationResult<CreateOneEmployeeMutation>;
 export type CreateOneEmployeeMutationOptions = Apollo.BaseMutationOptions<CreateOneEmployeeMutation, CreateOneEmployeeMutationVariables>;
+export const GetEmployeeDocument = gql`
+    query getEmployee($employeeId: Int!) {
+  employee(employeeId: $employeeId) {
+    firstName
+    email
+    lastName
+    pictureUrl
+    phone
+    birthDate
+    address
+    city
+    region
+    startDate
+    endDate
+    createdAt
+  }
+}
+    `;
+
+/**
+ * __useGetEmployeeQuery__
+ *
+ * To run a query within a React component, call `useGetEmployeeQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetEmployeeQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetEmployeeQuery({
+ *   variables: {
+ *      employeeId: // value for 'employeeId'
+ *   },
+ * });
+ */
+export function useGetEmployeeQuery(baseOptions: Apollo.QueryHookOptions<GetEmployeeQuery, GetEmployeeQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetEmployeeQuery, GetEmployeeQueryVariables>(GetEmployeeDocument, options);
+      }
+export function useGetEmployeeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetEmployeeQuery, GetEmployeeQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetEmployeeQuery, GetEmployeeQueryVariables>(GetEmployeeDocument, options);
+        }
+export type GetEmployeeQueryHookResult = ReturnType<typeof useGetEmployeeQuery>;
+export type GetEmployeeLazyQueryHookResult = ReturnType<typeof useGetEmployeeLazyQuery>;
+export type GetEmployeeQueryResult = Apollo.QueryResult<GetEmployeeQuery, GetEmployeeQueryVariables>;
 export const GetEmployeesDocument = gql`
     query GetEmployees {
   employees {

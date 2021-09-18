@@ -1,6 +1,7 @@
 import { Employee, Maybe } from 'generated/graphql';
 import { format } from 'date-fns';
 import { Button } from '@chakra-ui/button';
+import { Link } from 'react-router-dom';
 
 interface Props {
   employee?: Maybe<Employee | undefined>;
@@ -41,7 +42,9 @@ const ProfileCard = ({ employee }: Props) => {
               Phone : <span className='text-gray-700'>{employee?.phone}</span>
             </div>
           </div>
-          <Button>Profile</Button>
+          <Link to={`/team/employee/${employee?.id}`}>
+            <Button>Profile</Button>
+          </Link>
         </div>
       </div>
     </div>

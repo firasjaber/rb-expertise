@@ -1,0 +1,16 @@
+query getEmployee($employeeId: Int!) {
+  employee(employeeId: $employeeId) {
+    firstName
+    email
+    lastName
+    pictureUrl
+    phone
+    birthDate
+    address
+    city
+    region
+    startDate
+    endDate
+    createdAt
+  }
+}
