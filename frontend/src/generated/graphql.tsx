@@ -102,12 +102,64 @@ export type User = {
   username?: Maybe<Scalars['String']>;
 };
 
+export type CreateOneEmployeeMutationVariables = Exact<{
+  createOneEmployeeData: EmployeeCreateInput;
+}>;
+
+
+export type CreateOneEmployeeMutation = { __typename?: 'Mutation', createOneEmployee?: Maybe<{ __typename?: 'Employee', firstName?: Maybe<string>, pictureUrl?: Maybe<string>, email?: Maybe<string>, id: number, isAdmin?: Maybe<boolean>, phone?: Maybe<string>, birthDate?: Maybe<any>, address?: Maybe<string>, region?: Maybe<string>, city?: Maybe<string>, startDate?: Maybe<any>, endDate?: Maybe<any>, createdAt?: Maybe<any> }> };
+
 export type GetEmployeesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetEmployeesQuery = { __typename?: 'Query', employees?: Maybe<Array<Maybe<{ __typename?: 'Employee', id: number, firstName?: Maybe<string>, lastName?: Maybe<string>, email?: Maybe<string>, pictureUrl?: Maybe<string>, phone?: Maybe<string>, startDate?: Maybe<any> }>>> };
 
 
+export const CreateOneEmployeeDocument = gql`
+    mutation createOneEmployee($createOneEmployeeData: EmployeeCreateInput!) {
+  createOneEmployee(data: $createOneEmployeeData) {
+    firstName
+    pictureUrl
+    email
+    id
+    isAdmin
+    phone
+    birthDate
+    address
+    region
+    city
+    startDate
+    endDate
+    createdAt
+  }
+}
+    `;
+export type CreateOneEmployeeMutationFn = Apollo.MutationFunction<CreateOneEmployeeMutation, CreateOneEmployeeMutationVariables>;
+
+/**
+ * __useCreateOneEmployeeMutation__
+ *
+ * To run a mutation, you first call `useCreateOneEmployeeMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateOneEmployeeMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createOneEmployeeMutation, { data, loading, error }] = useCreateOneEmployeeMutation({
+ *   variables: {
+ *      createOneEmployeeData: // value for 'createOneEmployeeData'
+ *   },
+ * });
+ */
+export function useCreateOneEmployeeMutation(baseOptions?: Apollo.MutationHookOptions<CreateOneEmployeeMutation, CreateOneEmployeeMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateOneEmployeeMutation, CreateOneEmployeeMutationVariables>(CreateOneEmployeeDocument, options);
+      }
+export type CreateOneEmployeeMutationHookResult = ReturnType<typeof useCreateOneEmployeeMutation>;
+export type CreateOneEmployeeMutationResult = Apollo.MutationResult<CreateOneEmployeeMutation>;
+export type CreateOneEmployeeMutationOptions = Apollo.BaseMutationOptions<CreateOneEmployeeMutation, CreateOneEmployeeMutationVariables>;
 export const GetEmployeesDocument = gql`
     query GetEmployees {
   employees {

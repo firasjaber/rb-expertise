@@ -1,0 +1,17 @@
+mutation createOneEmployee($createOneEmployeeData: EmployeeCreateInput!) {
+  createOneEmployee(data: $createOneEmployeeData) {
+    firstName
+    pictureUrl
+    email
+    id
+    isAdmin
+    phone
+    birthDate
+    address
+    region
+    city
+    startDate
+    endDate
+    createdAt
+  }
+}

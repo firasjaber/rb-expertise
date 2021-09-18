@@ -15,7 +15,7 @@ const FormikInput = ({ formik, field, type, ph }: Props) => {
       {field} :
       <Input
         placeholder={ph ?? undefined}
-        className='mt-2 mb-4'
+        className='mt-2 mb-4 text-gray-800'
         type={type}
         name={field}
         onChange={formik.handleChange}

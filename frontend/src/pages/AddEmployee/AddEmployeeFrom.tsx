@@ -1,25 +1,29 @@
 import { Avatar, Button, Heading } from '@chakra-ui/react';
 import FormikInput from 'components/FormikInput';
 import { useFormik } from 'formik';
+import { useCreateOneEmployeeMutation } from 'generated/graphql';
+import toast from 'react-hot-toast';
+import { useHistory } from 'react-router';
 import * as Yup from 'yup';
 
 interface Props {}
 
 const AddEmployeeFrom = (props: Props) => {
+  const [createOneEmployee, { loading }] = useCreateOneEmployeeMutation();
+  const history = useHistory();
   const formik = useFormik({
     initialValues: {
       email: '',
       firstName: '',
       lastName: '',
       birthDate: '',
-      role: '',
       startDate: '',
-      endDate: '', //not required
+      endDate: undefined, //not required
       phone: '',
       address: '',
       city: '',
       region: '',
-      pictureUrl: '', //not required
+      pictureUrl: undefined, //not required
     },
     validationSchema: Yup.object({
       email: Yup.string().email().required(),
@@ -32,7 +36,6 @@ const AddEmployeeFrom = (props: Props) => {
         .min(3, 'Must be 15 characters or more')
         .required(),
       birthDate: Yup.date().required(),
-      role: Yup.string().required(),
       startDate: Yup.date().required(),
       phone: Yup.string().length(8, 'Phone number not valid').required(),
       address: Yup.string().required(),
@@ -43,7 +46,21 @@ const AddEmployeeFrom = (props: Props) => {
     validateOnBlur: false,
     validateOnChange: false,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      createOneEmployee({
+        variables: { createOneEmployeeData: values },
+      })
+        .then(() => {
+          toast.success('Employee added succesfully!');
+          formik.resetForm();
+          history.push('/team');
+        })
+        .catch((e) => {
+          if (e.message.includes('exist')) {
+            toast.error('Email already used...');
+          } else {
+            toast.error('Error occured, try later...');
+          }
+        });
     },
   });
   return (
@@ -95,7 +112,12 @@ const AddEmployeeFrom = (props: Props) => {
               <FormikInput formik={formik} field='region' type='text' ph='ER' />
             </div>
             <div className='space-x-2 mt-5'>
-              <Button type='submit' colorScheme='blue' w='120px'>
+              <Button
+                type='submit'
+                colorScheme='blue'
+                w='120px'
+                isLoading={loading}
+              >
                 Submit
               </Button>
               <Button type='reset' colorScheme='blue' variant='outline'>
@@ -107,7 +129,6 @@ const AddEmployeeFrom = (props: Props) => {
             <Heading as='h2' size='md' fontWeight='semibold' mb='4'>
               Job Infos :
             </Heading>
-            <FormikInput formik={formik} field='role' type='text' ph='expert' />
             <FormikInput formik={formik} field='startDate' type='date' />
             <FormikInput formik={formik} field='endDate' type='date' />
           </div>
