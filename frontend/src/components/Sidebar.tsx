@@ -13,7 +13,7 @@ import {
 const links = [
   {
     id: 0,
-    link: '/',
+    link: '/overview',
     title: 'Overview',
     icon: <TemplateIcon className='w-6 h-6' />,
   },
@@ -53,7 +53,7 @@ export const Sidebar = () => {
         {links.map((l) => (
           <div
             className={`flex items-center text-gray-100 py-3 space-x-2 w-full pl-16 transition-all hover:bg-blue-800 cursor-pointer ${
-              pathname === l.link ? 'bg-blue-800' : ''
+              pathname.includes(l.link) ? 'bg-blue-800' : ''
             }`}
             key={l.id}
           >

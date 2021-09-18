@@ -1,5 +1,6 @@
-import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
-import { SearchIcon } from '@heroicons/react/outline';
+import { Input, InputGroup, InputLeftElement, Button } from '@chakra-ui/react';
+import { PlusIcon, SearchIcon } from '@heroicons/react/outline';
+import { Link } from 'react-router-dom';
 
 interface Props {
   title: string;
@@ -15,24 +16,34 @@ export const PageHeader = ({ title, description }: Props) => {
           {description ?? title}
         </span>
       </div>
-      <div className='w-100'>
-        <InputGroup>
-          <InputLeftElement
-            pointerEvents='none'
-            children={
-              <SearchIcon className='text-gray-300 w-6 h-6 mt-3 ml-3' />
-            }
-          />
-          <Input
-            type='text'
-            placeholder='Search for things...'
-            bg='white'
-            rounded='3xl'
-            padding='25px'
-            pl='45px'
-            pr='5px'
-          />
-        </InputGroup>
+      <div className='flex items-center space-x-4'>
+        <Link to='/team/addemployee'>
+          <Button
+            leftIcon={<PlusIcon className='w-4 h-4' />}
+            colorScheme='green'
+          >
+            Add Employee
+          </Button>
+        </Link>
+        <div className='w-100'>
+          <InputGroup>
+            <InputLeftElement
+              pointerEvents='none'
+              children={
+                <SearchIcon className='text-gray-300 w-6 h-6 mt-3 ml-3' />
+              }
+            />
+            <Input
+              type='text'
+              placeholder='Search for things...'
+              bg='white'
+              rounded='3xl'
+              padding='25px'
+              pl='45px'
+              pr='5px'
+            />
+          </InputGroup>
+        </div>
       </div>
     </div>
   );
