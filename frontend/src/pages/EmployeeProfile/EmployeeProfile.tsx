@@ -15,6 +15,7 @@ const EmployeeProfile = (props: Props) => {
   const { employeeId } = useParams<EmployeeProfileParams>();
   const { data, loading, error } = useGetEmployeeQuery({
     variables: { employeeId: Number(employeeId) },
+    fetchPolicy: 'no-cache',
   });
   return (
     <div className='flex flex-col flex-1 p-10 px-14 font-nunito'>

@@ -19,7 +19,7 @@ const FormikInput = ({ formik, field, type, ph }: Props) => {
         type={type}
         name={field}
         onChange={formik.handleChange}
-        value={formik.values['field']}
+        value={formik.values[field]}
         isInvalid={formik.errors[field] ? true : false}
       />
       {formik.errors[field] && (

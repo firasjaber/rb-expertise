@@ -19,7 +19,7 @@ import {
   useDeleteOneEmployeeMutationMutation,
 } from 'generated/graphql';
 import toast from 'react-hot-toast';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 interface Props {
   loading: boolean;
   employeeId?: string;
@@ -117,7 +117,9 @@ const Profile = ({ loading, employee, employeeId }: Props) => {
             </li>
           </ul>
           <div className='my-4 mt-6 space-x-4'>
-            <Button colorScheme='yellow'>Edit Employee</Button>
+            <Link to={`/team/editemployee/${employeeId}`}>
+              <Button colorScheme='yellow'>Edit Employee</Button>
+            </Link>
             <Button colorScheme='red' onClick={onOpen}>
               Delete Employee
             </Button>

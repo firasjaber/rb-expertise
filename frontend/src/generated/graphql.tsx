@@ -122,6 +122,13 @@ export type DeleteOneEmployeeMutationMutationVariables = Exact<{
 
 export type DeleteOneEmployeeMutationMutation = { __typename?: 'Mutation', deleteOneEmployee?: Maybe<boolean> };
 
+export type UpdateOneEmployeeMutationMutationVariables = Exact<{
+  updateOneEmployeeData: EmployeeUpdateInput;
+}>;
+
+
+export type UpdateOneEmployeeMutationMutation = { __typename?: 'Mutation', updateOneEmployee?: Maybe<{ __typename?: 'Employee', id: number, firstName?: Maybe<string>, lastName?: Maybe<string>, email?: Maybe<string>, pictureUrl?: Maybe<string>, isAdmin?: Maybe<boolean>, phone?: Maybe<string>, birthDate?: Maybe<any>, address?: Maybe<string>, city?: Maybe<string>, region?: Maybe<string>, startDate?: Maybe<any>, endDate?: Maybe<any>, createdAt?: Maybe<any> }> };
+
 export type GetEmployeeQueryVariables = Exact<{
   employeeId: Scalars['Int'];
 }>;
@@ -211,6 +218,52 @@ export function useDeleteOneEmployeeMutationMutation(baseOptions?: Apollo.Mutati
 export type DeleteOneEmployeeMutationMutationHookResult = ReturnType<typeof useDeleteOneEmployeeMutationMutation>;
 export type DeleteOneEmployeeMutationMutationResult = Apollo.MutationResult<DeleteOneEmployeeMutationMutation>;
 export type DeleteOneEmployeeMutationMutationOptions = Apollo.BaseMutationOptions<DeleteOneEmployeeMutationMutation, DeleteOneEmployeeMutationMutationVariables>;
+export const UpdateOneEmployeeMutationDocument = gql`
+    mutation UpdateOneEmployeeMutation($updateOneEmployeeData: EmployeeUpdateInput!) {
+  updateOneEmployee(data: $updateOneEmployeeData) {
+    id
+    firstName
+    lastName
+    email
+    pictureUrl
+    isAdmin
+    phone
+    birthDate
+    address
+    city
+    region
+    startDate
+    endDate
+    createdAt
+  }
+}
+    `;
+export type UpdateOneEmployeeMutationMutationFn = Apollo.MutationFunction<UpdateOneEmployeeMutationMutation, UpdateOneEmployeeMutationMutationVariables>;
+
+/**
+ * __useUpdateOneEmployeeMutationMutation__
+ *
+ * To run a mutation, you first call `useUpdateOneEmployeeMutationMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateOneEmployeeMutationMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateOneEmployeeMutationMutation, { data, loading, error }] = useUpdateOneEmployeeMutationMutation({
+ *   variables: {
+ *      updateOneEmployeeData: // value for 'updateOneEmployeeData'
+ *   },
+ * });
+ */
+export function useUpdateOneEmployeeMutationMutation(baseOptions?: Apollo.MutationHookOptions<UpdateOneEmployeeMutationMutation, UpdateOneEmployeeMutationMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateOneEmployeeMutationMutation, UpdateOneEmployeeMutationMutationVariables>(UpdateOneEmployeeMutationDocument, options);
+      }
+export type UpdateOneEmployeeMutationMutationHookResult = ReturnType<typeof useUpdateOneEmployeeMutationMutation>;
+export type UpdateOneEmployeeMutationMutationResult = Apollo.MutationResult<UpdateOneEmployeeMutationMutation>;
+export type UpdateOneEmployeeMutationMutationOptions = Apollo.BaseMutationOptions<UpdateOneEmployeeMutationMutation, UpdateOneEmployeeMutationMutationVariables>;
 export const GetEmployeeDocument = gql`
     query getEmployee($employeeId: Int!) {
   employee(employeeId: $employeeId) {

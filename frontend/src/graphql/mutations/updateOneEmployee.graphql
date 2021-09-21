@@ -1,0 +1,20 @@
+mutation UpdateOneEmployeeMutation(
+  $updateOneEmployeeData: EmployeeUpdateInput!
+) {
+  updateOneEmployee(data: $updateOneEmployeeData) {
+    id
+    firstName
+    lastName
+    email
+    pictureUrl
+    isAdmin
+    phone
+    birthDate
+    address
+    city
+    region
+    startDate
+    endDate
+    createdAt
+  }
+}
