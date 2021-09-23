@@ -13,13 +13,14 @@
     "eslint": "eslint 'src/**/*.ts'",
     "eslint:fix": "eslint --fix 'src/**/*.ts'",
     "generate": "ts-node --transpile-only src/schema",
-    "test": "npm run generate && jest"
+    "test": "dotenv -e ./.env.test npm run generate && dotenv -e ./.env.test jest"
   },
   "author": "Firas Jaber",
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^3.0.2",
     "apollo-server": "^3.3.0",
+    "dotenv": "^10.0.0",
     "graphql": "^15.5.3",
     "graphql-iso-date": "^3.6.1",
     "nexus": "^1.1.0",
@@ -56,7 +57,9 @@
         }
       }
     },
-    "testPathIgnorePatterns" : ["__tests__/config/"],
+    "testPathIgnorePatterns": [
+      "__tests__/config/"
+    ],
     "testEnvironment": "node"
   },
   "husky": {
