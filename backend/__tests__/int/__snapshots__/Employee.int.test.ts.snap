@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Employee tests create employee mutation: already exists email 1`] = `
+Array [
+  [GraphQLError: Email already exists for another employee],
+]
+`;
+
+exports[`Employee tests create employee mutation: valid input 1`] = `
+Object {
+  "createOneEmployee": Object {
+    "address": "Groove street, Earth, 1000",
+    "birthDate": "2001-02-19",
+    "city": "City",
+    "createdAt": "2021-09-23",
+    "email": "jhon@gmail.com",
+    "endDate": null,
+    "firstName": "Jhon",
+    "isAdmin": false,
+    "lastName": "Doe",
+    "phone": "10200300",
+    "pictureUrl": "https://imgproxy.generated.photos/qZKLWxkKQ-IwCzW5AYoDKbjn9GUT6aGuJ-b918HaEJE/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy90cmFu/c3BhcmVudF92My92/M18wNDk4NDQ4LnBu/Zw.png",
+    "region": "Earth",
+    "startDate": "2021-12-01",
+  },
+}
+`;
+
+exports[`Employee tests delete employee mutation: invalid input 1`] = `
+Array [
+  [UserInputError: Variable "$deleteOneEmployeeId" of required type "Int!" was not provided.],
+]
+`;
+
+exports[`Employee tests delete employee mutation: not existing employee input 1`] = `
+Array [
+  [GraphQLError: Employee not found to delete],
+]
+`;
+
+exports[`Employee tests edit employee mutation: not existing employee 1`] = `
+Array [
+  [GraphQLError: Employee not found to update],
+]
+`;
+
+exports[`Employee tests edit employee mutation: valid input 1`] = `
+Object {
+  "updateOneEmployee": Object {
+    "address": "Groove street, Earth, 1000",
+    "birthDate": "2001-02-19",
+    "city": "City",
+    "createdAt": "2021-09-23",
+    "email": "jhon2@gmail.com",
+    "endDate": null,
+    "firstName": "Jhonny",
+    "isAdmin": false,
+    "lastName": "Doe",
+    "phone": "20400500",
+    "pictureUrl": "https://imgproxy.generated.photos/qZKLWxkKQ-IwCzW5AYoDKbjn9GUT6aGuJ-b918HaEJE/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy90cmFu/c3BhcmVudF92My92/M18wNDk4NDQ4LnBu/Zw.png",
+    "region": "Earth",
+    "startDate": "2021-12-01",
+  },
+}
+`;

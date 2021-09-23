@@ -4,7 +4,6 @@
   "description": "Graphql API for RB-Expertise Web App",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node-dev --poll --transpile-only --no-notify src/index.ts",
     "generate:migration": "npxd prisma migrate dev",
     "prisma:studio": "npxd prisma studio",
@@ -12,13 +11,16 @@
     "prettier": "prettier 'src/**/*.ts'",
     "prettier:fix": "prettier --write 'src/**/*.ts'",
     "eslint": "eslint 'src/**/*.ts'",
-    "eslint:fix": "eslint --fix 'src/**/*.ts'"
+    "eslint:fix": "eslint --fix 'src/**/*.ts'",
+    "generate": "ts-node --transpile-only src/schema",
+    "test": "dotenv -e ./.env.test npm run generate && dotenv -e ./.env.test jest"
   },
   "author": "Firas Jaber",
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^3.0.2",
     "apollo-server": "^3.3.0",
+    "dotenv": "^10.0.0",
     "graphql": "^15.5.3",
     "graphql-iso-date": "^3.6.1",
     "nexus": "^1.1.0",
@@ -26,18 +28,39 @@
   },
   "devDependencies": {
     "@types/graphql-iso-date": "^3.4.0",
+    "@types/jest": "^27.0.2",
+    "@types/sqlite3": "^3.1.7",
     "@typescript-eslint/eslint-plugin": "4.31.1",
     "@typescript-eslint/parser": "4.31.1",
     "eslint": "7.32.0",
     "eslint-config-airbnb": "18.2.1",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-prettier": "4.0.0",
+    "get-port": "^5.1.1",
+    "graphql-request": "^3.5.0",
     "husky": "7.0.2",
+    "jest": "^27.2.1",
     "lint-staged": "11.1.2",
     "npxd": "^1.1.5",
     "prettier": "2.4.0",
+    "sqlite3": "^5.0.2",
+    "ts-jest": "^27.0.5",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.4.3"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "globals": {
+      "ts-jest": {
+        "diagnostics": {
+          "warnOnly": true
+        }
+      }
+    },
+    "testPathIgnorePatterns": [
+      "__tests__/config/"
+    ],
+    "testEnvironment": "node"
   },
   "husky": {
     "hooks": {
