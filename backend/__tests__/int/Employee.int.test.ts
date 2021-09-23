@@ -12,7 +12,6 @@ import {
 
 describe('Employee tests', () => {
   let server: ApolloServer;
-  const typename = 'Employee';
   server = new ApolloServer(apolloServerConfig);
 
   afterAll(async () => {
@@ -132,7 +131,7 @@ describe('Employee tests', () => {
       variables: { createOneEmployeeData: mockEmployee },
     });
     const { id, ...rest } = createRes.data?.createOneEmployee;
-    const udpatedMockEmployee = { ...rest, id: 100, firstName: 'Jhonny', phone: '20400500' };
+    const udpatedMockEmployee = { ...rest, id: 1000000, firstName: 'Jhonny', phone: '20400500' };
     const res = await server.executeOperation({
       query: UPDATE_EMPLOYEE,
       variables: { updateOneEmployeeData: udpatedMockEmployee },
@@ -178,7 +177,7 @@ describe('Employee tests', () => {
   it('delete employee mutation: not existing employee input', async () => {
     const res = await server.executeOperation({
       query: DELETE_EMPLOYEE,
-      variables: { deleteOneEmployeeId: 100 },
+      variables: { deleteOneEmployeeId: 1000000 },
     });
     expect(res.errors).toBeDefined();
     expect(res.errors).toMatchSnapshot();
@@ -208,8 +207,11 @@ describe('Employee tests', () => {
     expect(res.data).toBeDefined();
     expect(res.data?.deleteOneEmployee).toBe(true);
   });
-  /*
+
   it('get all employees query return array list', async () => {
-    expect(true).toBe(false);
-  }); */
+    const res = await server.executeOperation({
+      query: GET_ALL_EMPLOYEES,
+    });
+    expect(res.data?.employees?.length).toBeGreaterThan(0);
+  });
 });
