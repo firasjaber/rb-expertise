@@ -111,7 +111,6 @@ describe('Employee tests', () => {
     expect(res.errors?.length).toBe(2);
     expect(res.errors?.[0].extensions?.code).toBe('BAD_USER_INPUT');
     expect(res.errors?.[1].extensions?.code).toBe('BAD_USER_INPUT');
-    //expect(res.errors).toMatchSnapshot();
   });
   it('edit employee mutation: not existing employee', async () => {
     //create valid employee then test against it
