@@ -3,8 +3,10 @@ import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-co
 import { context } from './context';
 import { schema } from './schema';
 
-export const server = new ApolloServer({
+export const apolloServerConfig = {
   schema,
   context,
   plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
-});
+};
+
+export const server = new ApolloServer(apolloServerConfig);

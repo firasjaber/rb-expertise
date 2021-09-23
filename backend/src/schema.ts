@@ -1,5 +1,5 @@
 import { makeSchema } from 'nexus';
-import { nexusPrisma } from 'nexus-plugin-prisma';
+//import { nexusPrisma } from 'nexus-plugin-prisma';
 import { join } from 'path';
 import * as types from './graphql';
 
@@ -13,5 +13,5 @@ export const schema = makeSchema({
     module: join(__dirname, './context.ts'),
     export: 'Context',
   },
-  plugins: [nexusPrisma()],
+  //plugins: [nexusPrisma()],
 });
