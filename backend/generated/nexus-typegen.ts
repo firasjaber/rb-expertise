@@ -71,6 +71,15 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
+  Appointment: { // root type
+    createdAt?: NexusGenScalars['Date'] | null; // Date
+    date?: NexusGenScalars['Date'] | null; // Date
+    employeeId: number; // Int!
+    id: number; // Int!
+    location?: string | null; // String
+    notes?: string | null; // String
+    title?: string | null; // String
+  }
   Employee: { // root type
     address?: string | null; // String
     birthDate?: NexusGenScalars['Date'] | null; // Date
@@ -106,6 +115,16 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
+  Appointment: { // field return type
+    createdAt: NexusGenScalars['Date'] | null; // Date
+    date: NexusGenScalars['Date'] | null; // Date
+    employee: NexusGenRootTypes['Employee'] | null; // Employee
+    employeeId: number; // Int!
+    id: number; // Int!
+    location: string | null; // String
+    notes: string | null; // String
+    title: string | null; // String
+  }
   Employee: { // field return type
     address: string | null; // String
     birthDate: NexusGenScalars['Date'] | null; // Date
@@ -128,6 +147,8 @@ export interface NexusGenFieldTypes {
     updateOneEmployee: NexusGenRootTypes['Employee'] | null; // Employee
   }
   Query: { // field return type
+    appointment: NexusGenRootTypes['Appointment'] | null; // Appointment
+    appointments: Array<NexusGenRootTypes['Appointment'] | null> | null; // [Appointment]
     employee: NexusGenRootTypes['Employee'] | null; // Employee
     employees: Array<NexusGenRootTypes['Employee'] | null> | null; // [Employee]
     me: string | null; // String
@@ -139,6 +160,16 @@ export interface NexusGenFieldTypes {
 }
 
 export interface NexusGenFieldTypeNames {
+  Appointment: { // field return type name
+    createdAt: 'Date'
+    date: 'Date'
+    employee: 'Employee'
+    employeeId: 'Int'
+    id: 'Int'
+    location: 'String'
+    notes: 'String'
+    title: 'String'
+  }
   Employee: { // field return type name
     address: 'String'
     birthDate: 'Date'
@@ -161,6 +192,8 @@ export interface NexusGenFieldTypeNames {
     updateOneEmployee: 'Employee'
   }
   Query: { // field return type name
+    appointment: 'Appointment'
+    appointments: 'Appointment'
     employee: 'Employee'
     employees: 'Employee'
     me: 'String'
@@ -184,6 +217,12 @@ export interface NexusGenArgTypes {
     }
   }
   Query: {
+    appointment: { // args
+      appointmentId: number; // Int!
+    }
+    appointments: { // args
+      searchQuery?: string | null; // String
+    }
     employee: { // args
       employeeId: number; // Int!
     }

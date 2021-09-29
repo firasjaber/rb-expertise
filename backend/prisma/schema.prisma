@@ -17,18 +17,30 @@ model User {
 }
 
 model Employee {
-  id         Int       @id @default(autoincrement())
-  firstName  String
-  lastName   String
-  email      String    @unique
-  pictureUrl String?   @default("https://imgproxy.generated.photos/qZKLWxkKQ-IwCzW5AYoDKbjn9GUT6aGuJ-b918HaEJE/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy90cmFu/c3BhcmVudF92My92/M18wNDk4NDQ4LnBu/Zw.png")
-  isAdmin    Boolean
-  phone      String
-  birthDate  DateTime
-  address    String
-  city       String
-  region     String
-  startDate  DateTime
-  endDate    DateTime?
-  createdAt  DateTime  @default(now())
+  id           Int           @id @default(autoincrement())
+  firstName    String
+  lastName     String
+  email        String        @unique
+  pictureUrl   String?       @default("https://imgproxy.generated.photos/qZKLWxkKQ-IwCzW5AYoDKbjn9GUT6aGuJ-b918HaEJE/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy90cmFu/c3BhcmVudF92My92/M18wNDk4NDQ4LnBu/Zw.png")
+  isAdmin      Boolean
+  phone        String
+  birthDate    DateTime
+  address      String
+  city         String
+  region       String
+  startDate    DateTime
+  endDate      DateTime?
+  createdAt    DateTime      @default(now())
+  appointments Appointment[]
+}
+
+model Appointment {
+  id         Int      @id @default(autoincrement())
+  title      String
+  location   String
+  date       DateTime
+  notes      String?  @default("")
+  createdAt  DateTime @default(now())
+  employee   Employee @relation(fields: [employeeId], references: [id])
+  employeeId Int
 }

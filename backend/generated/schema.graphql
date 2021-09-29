@@ -2,6 +2,17 @@
 ### Do not make changes to this file directly
 
 
+type Appointment {
+  createdAt: Date
+  date: Date
+  employee: Employee
+  employeeId: Int!
+  id: Int!
+  location: String
+  notes: String
+  title: String
+}
+
 """
 A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
 """
@@ -60,6 +71,8 @@ type Mutation {
 }
 
 type Query {
+  appointment(appointmentId: Int!): Appointment
+  appointments(searchQuery: String): [Appointment]
   employee(employeeId: Int!): Employee
   employees(searchQuery: String): [Employee]
   me: String
