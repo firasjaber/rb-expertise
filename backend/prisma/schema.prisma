@@ -34,13 +34,23 @@ model Employee {
   appointments Appointment[]
 }
 
+model Assurance {
+  id          Int           @id @default(autoincrement())
+  slug        String
+  name        String
+  pictureUrl  String
+  appoitments Appointment[]
+}
+
 model Appointment {
-  id         Int      @id @default(autoincrement())
-  title      String
-  location   String
-  date       DateTime
-  notes      String?  @default("")
-  createdAt  DateTime @default(now())
-  employee   Employee @relation(fields: [employeeId], references: [id])
-  employeeId Int
+  id          Int       @id @default(autoincrement())
+  title       String
+  location    String
+  date        DateTime
+  notes       String?   @default("")
+  createdAt   DateTime  @default(now())
+  employee    Employee  @relation(fields: [employeeId], references: [id])
+  employeeId  Int
+  assurance   Assurance @relation(fields: [assuranceId], references: [id])
+  assuranceId Int
 }
