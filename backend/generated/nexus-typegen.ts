@@ -29,6 +29,14 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  AppointmentCreateInput: { // input type
+    assuranceId: number; // Int!
+    date: NexusGenScalars['Date']; // Date!
+    employeeId: number; // Int!
+    location: string; // String!
+    notes?: string | null; // String
+    title: string; // String!
+  }
   EmployeeCreateInput: { // input type
     address: string; // String!
     birthDate: NexusGenScalars['Date']; // Date!
@@ -72,13 +80,20 @@ export interface NexusGenScalars {
 
 export interface NexusGenObjects {
   Appointment: { // root type
-    createdAt?: NexusGenScalars['Date'] | null; // Date
-    date?: NexusGenScalars['Date'] | null; // Date
+    assuranceId: number; // Int!
+    createdAt: NexusGenScalars['Date']; // Date!
+    date: NexusGenScalars['Date']; // Date!
     employeeId: number; // Int!
     id: number; // Int!
     location?: string | null; // String
     notes?: string | null; // String
-    title?: string | null; // String
+    title: string; // String!
+  }
+  Assurance: { // root type
+    id: number; // Int!
+    name?: string | null; // String
+    pictureUrl?: string | null; // String
+    slug?: string | null; // String
   }
   Employee: { // root type
     address?: string | null; // String
@@ -116,14 +131,23 @@ export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
   Appointment: { // field return type
-    createdAt: NexusGenScalars['Date'] | null; // Date
-    date: NexusGenScalars['Date'] | null; // Date
+    assurance: NexusGenRootTypes['Assurance'] | null; // Assurance
+    assuranceId: number; // Int!
+    createdAt: NexusGenScalars['Date']; // Date!
+    date: NexusGenScalars['Date']; // Date!
     employee: NexusGenRootTypes['Employee'] | null; // Employee
     employeeId: number; // Int!
     id: number; // Int!
     location: string | null; // String
     notes: string | null; // String
-    title: string | null; // String
+    title: string; // String!
+  }
+  Assurance: { // field return type
+    appointments: Array<NexusGenRootTypes['Appointment'] | null> | null; // [Appointment]
+    id: number; // Int!
+    name: string | null; // String
+    pictureUrl: string | null; // String
+    slug: string | null; // String
   }
   Employee: { // field return type
     address: string | null; // String
@@ -142,6 +166,7 @@ export interface NexusGenFieldTypes {
     startDate: NexusGenScalars['Date'] | null; // Date
   }
   Mutation: { // field return type
+    createAppointment: NexusGenRootTypes['Appointment'] | null; // Appointment
     createOneEmployee: NexusGenRootTypes['Employee'] | null; // Employee
     deleteOneEmployee: boolean | null; // Boolean
     updateOneEmployee: NexusGenRootTypes['Employee'] | null; // Employee
@@ -149,6 +174,7 @@ export interface NexusGenFieldTypes {
   Query: { // field return type
     appointment: NexusGenRootTypes['Appointment'] | null; // Appointment
     appointments: Array<NexusGenRootTypes['Appointment'] | null> | null; // [Appointment]
+    assurances: Array<NexusGenRootTypes['Assurance'] | null> | null; // [Assurance]
     employee: NexusGenRootTypes['Employee'] | null; // Employee
     employees: Array<NexusGenRootTypes['Employee'] | null> | null; // [Employee]
     me: string | null; // String
@@ -161,6 +187,8 @@ export interface NexusGenFieldTypes {
 
 export interface NexusGenFieldTypeNames {
   Appointment: { // field return type name
+    assurance: 'Assurance'
+    assuranceId: 'Int'
     createdAt: 'Date'
     date: 'Date'
     employee: 'Employee'
@@ -169,6 +197,13 @@ export interface NexusGenFieldTypeNames {
     location: 'String'
     notes: 'String'
     title: 'String'
+  }
+  Assurance: { // field return type name
+    appointments: 'Appointment'
+    id: 'Int'
+    name: 'String'
+    pictureUrl: 'String'
+    slug: 'String'
   }
   Employee: { // field return type name
     address: 'String'
@@ -187,6 +222,7 @@ export interface NexusGenFieldTypeNames {
     startDate: 'Date'
   }
   Mutation: { // field return type name
+    createAppointment: 'Appointment'
     createOneEmployee: 'Employee'
     deleteOneEmployee: 'Boolean'
     updateOneEmployee: 'Employee'
@@ -194,6 +230,7 @@ export interface NexusGenFieldTypeNames {
   Query: { // field return type name
     appointment: 'Appointment'
     appointments: 'Appointment'
+    assurances: 'Assurance'
     employee: 'Employee'
     employees: 'Employee'
     me: 'String'
@@ -206,6 +243,9 @@ export interface NexusGenFieldTypeNames {
 
 export interface NexusGenArgTypes {
   Mutation: {
+    createAppointment: { // args
+      data: NexusGenInputs['AppointmentCreateInput']; // AppointmentCreateInput!
+    }
     createOneEmployee: { // args
       data: NexusGenInputs['EmployeeCreateInput']; // EmployeeCreateInput!
     }

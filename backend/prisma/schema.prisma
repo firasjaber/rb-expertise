@@ -35,11 +35,11 @@ model Employee {
 }
 
 model Assurance {
-  id          Int           @id @default(autoincrement())
-  slug        String
-  name        String
-  pictureUrl  String
-  appoitments Appointment[]
+  id           Int           @id @default(autoincrement())
+  slug         String
+  name         String
+  pictureUrl   String
+  appointments Appointment[]
 }
 
 model Appointment {

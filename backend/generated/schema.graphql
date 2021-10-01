@@ -3,14 +3,33 @@
 
 
 type Appointment {
-  createdAt: Date
-  date: Date
+  assurance: Assurance
+  assuranceId: Int!
+  createdAt: Date!
+  date: Date!
   employee: Employee
   employeeId: Int!
   id: Int!
   location: String
   notes: String
-  title: String
+  title: String!
+}
+
+input AppointmentCreateInput {
+  assuranceId: Int!
+  date: Date!
+  employeeId: Int!
+  location: String!
+  notes: String
+  title: String!
+}
+
+type Assurance {
+  appointments: [Appointment]
+  id: Int!
+  name: String
+  pictureUrl: String
+  slug: String
 }
 
 """
@@ -65,6 +84,7 @@ input EmployeeUpdateInput {
 }
 
 type Mutation {
+  createAppointment(data: AppointmentCreateInput!): Appointment
   createOneEmployee(data: EmployeeCreateInput!): Employee
   deleteOneEmployee(employeeId: Int!): Boolean
   updateOneEmployee(data: EmployeeUpdateInput!): Employee
@@ -73,6 +93,7 @@ type Mutation {
 type Query {
   appointment(appointmentId: Int!): Appointment
   appointments(searchQuery: String): [Appointment]
+  assurances: [Assurance]
   employee(employeeId: Int!): Employee
   employees(searchQuery: String): [Employee]
   me: String
