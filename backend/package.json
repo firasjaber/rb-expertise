@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "ts-node-dev --poll --transpile-only --no-notify src/index.ts",
     "generate:migration": "npxd prisma migrate dev",
+    "generate:prisma": "npm prisma generate",
     "prisma:studio": "npxd prisma studio",
     "build": "tsc",
     "prettier": "prettier 'src/**/*.ts'",
@@ -18,7 +19,7 @@
   "author": "Firas Jaber",
   "license": "ISC",
   "dependencies": {
-    "@prisma/client": "^3.0.2",
+    "@prisma/client": "^3.0.1",
     "apollo-server": "^3.3.0",
     "dotenv": "^10.0.0",
     "graphql": "^15.5.3",
@@ -43,6 +44,7 @@
     "lint-staged": "11.1.2",
     "npxd": "^1.1.5",
     "prettier": "2.4.0",
+    "prisma": "^3.0.1",
     "sqlite3": "^5.0.2",
     "ts-jest": "^27.0.5",
     "ts-node-dev": "^1.1.8",
