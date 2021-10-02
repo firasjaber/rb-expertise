@@ -39,6 +39,7 @@ scalar Date
 
 type Employee {
   address: String
+  appointments: [Appointment]
   birthDate: Date
   city: String
   createdAt: Date

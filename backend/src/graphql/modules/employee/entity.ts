@@ -1,4 +1,5 @@
 import { objectType } from 'nexus';
+import { Context } from '../../../context';
 
 export const Employee = objectType({
   name: 'Employee',
@@ -17,5 +18,11 @@ export const Employee = objectType({
     t.date('startDate');
     t.date('endDate');
     t.date('createdAt');
+    t.list.field('appointments', {
+      type: 'Appointment',
+      resolve(root, _args, ctx: Context) {
+        return ctx.prisma.appointment.findMany({ where: { employeeId: root.id } });
+      },
+    });
   },
 });

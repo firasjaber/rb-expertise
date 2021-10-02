@@ -151,6 +151,7 @@ export interface NexusGenFieldTypes {
   }
   Employee: { // field return type
     address: string | null; // String
+    appointments: Array<NexusGenRootTypes['Appointment'] | null> | null; // [Appointment]
     birthDate: NexusGenScalars['Date'] | null; // Date
     city: string | null; // String
     createdAt: NexusGenScalars['Date'] | null; // Date
@@ -207,6 +208,7 @@ export interface NexusGenFieldTypeNames {
   }
   Employee: { // field return type name
     address: 'String'
+    appointments: 'Appointment'
     birthDate: 'Date'
     city: 'String'
     createdAt: 'Date'
