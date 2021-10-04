@@ -1,5 +1,10 @@
-import { AddEmployee, EmployeeProfile, Team } from 'pages';
-import { EditEmployee } from 'pages/EditEmployee';
+import {
+  AddEmployee,
+  EmployeeProfile,
+  Team,
+  Appointments,
+  EditEmployee,
+} from 'pages';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { Overview } from '../pages/Overview';
 
@@ -19,6 +24,9 @@ const Home = (props: Props) => {
       </Route>
       <Route path='/team/employee/:employeeId' exact>
         <EmployeeProfile />
+      </Route>
+      <Route path='/appointments' exact>
+        <Appointments />
       </Route>
       <Route path='/overview' exact>
         <Overview />
