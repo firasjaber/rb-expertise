@@ -26,6 +26,11 @@ input AppointmentCreateInput {
   title: String!
 }
 
+input AppointmentResolveInput {
+  id: Int!
+  resolved: Boolean!
+}
+
 type Assurance {
   appointments: [Appointment]
   id: Int!
@@ -90,6 +95,7 @@ type Mutation {
   createAppointment(data: AppointmentCreateInput!): Appointment
   createOneEmployee(data: EmployeeCreateInput!): Employee
   deleteOneEmployee(employeeId: Int!): Boolean
+  resolveAppointment(data: AppointmentResolveInput!): Appointment
   updateOneEmployee(data: EmployeeUpdateInput!): Employee
 }
 

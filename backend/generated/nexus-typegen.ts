@@ -37,6 +37,10 @@ export interface NexusGenInputs {
     notes?: string | null; // String
     title: string; // String!
   }
+  AppointmentResolveInput: { // input type
+    id: number; // Int!
+    resolved: boolean; // Boolean!
+  }
   EmployeeCreateInput: { // input type
     address: string; // String!
     birthDate: NexusGenScalars['Date']; // Date!
@@ -174,6 +178,7 @@ export interface NexusGenFieldTypes {
     createAppointment: NexusGenRootTypes['Appointment'] | null; // Appointment
     createOneEmployee: NexusGenRootTypes['Employee'] | null; // Employee
     deleteOneEmployee: boolean | null; // Boolean
+    resolveAppointment: NexusGenRootTypes['Appointment'] | null; // Appointment
     updateOneEmployee: NexusGenRootTypes['Employee'] | null; // Employee
   }
   Query: { // field return type
@@ -233,6 +238,7 @@ export interface NexusGenFieldTypeNames {
     createAppointment: 'Appointment'
     createOneEmployee: 'Employee'
     deleteOneEmployee: 'Boolean'
+    resolveAppointment: 'Appointment'
     updateOneEmployee: 'Employee'
   }
   Query: { // field return type name
@@ -259,6 +265,9 @@ export interface NexusGenArgTypes {
     }
     deleteOneEmployee: { // args
       employeeId: number; // Int!
+    }
+    resolveAppointment: { // args
+      data: NexusGenInputs['AppointmentResolveInput']; // AppointmentResolveInput!
     }
     updateOneEmployee: { // args
       data: NexusGenInputs['EmployeeUpdateInput']; // EmployeeUpdateInput!
