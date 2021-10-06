@@ -12,6 +12,8 @@ type Appointment {
   id: Int!
   location: String
   notes: String
+  resolved: Boolean
+  resolvedAt: Date
   title: String!
 }
 

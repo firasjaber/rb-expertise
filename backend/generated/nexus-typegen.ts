@@ -87,6 +87,8 @@ export interface NexusGenObjects {
     id: number; // Int!
     location?: string | null; // String
     notes?: string | null; // String
+    resolved?: boolean | null; // Boolean
+    resolvedAt?: NexusGenScalars['Date'] | null; // Date
     title: string; // String!
   }
   Assurance: { // root type
@@ -140,6 +142,8 @@ export interface NexusGenFieldTypes {
     id: number; // Int!
     location: string | null; // String
     notes: string | null; // String
+    resolved: boolean | null; // Boolean
+    resolvedAt: NexusGenScalars['Date'] | null; // Date
     title: string; // String!
   }
   Assurance: { // field return type
@@ -197,6 +201,8 @@ export interface NexusGenFieldTypeNames {
     id: 'Int'
     location: 'String'
     notes: 'String'
+    resolved: 'Boolean'
+    resolvedAt: 'Date'
     title: 'String'
   }
   Assurance: { // field return type name

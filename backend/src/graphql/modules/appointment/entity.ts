@@ -10,6 +10,8 @@ export const Appointment = objectType({
     t.nonNull.date('date');
     t.string('notes');
     t.nonNull.date('createdAt');
+    t.boolean('resolved');
+    t.date('resolvedAt');
     t.nonNull.int('employeeId');
     t.field('employee', {
       type: 'Employee',
