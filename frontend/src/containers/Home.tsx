@@ -7,6 +7,7 @@ import {
   AddAppointment,
   Missions,
   ViewMission,
+  AddMission,
 } from 'pages';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { Overview } from '../pages/Overview';
@@ -39,6 +40,9 @@ const Home = (props: Props) => {
       </Route>
       <Route path='/missions/view' exact>
         <ViewMission />
+      </Route>
+      <Route path='/missions/add'>
+        <AddMission />
       </Route>
       <Route path='/overview' exact>
         <Overview />

@@ -12,7 +12,7 @@ interface Props {
 const FormikInput = ({ formik, field, type, ph }: Props) => {
   return (
     <label className='text-gray-500'>
-      {field} :
+      {field.replace(/([A-Z])/g, ' $1').toLocaleLowerCase()} :
       <Input
         placeholder={ph ?? undefined}
         className='mt-2 mb-4 text-gray-800'

@@ -92,12 +92,6 @@ const ViewMission = (props: Props) => {
             <div className='text-gray-400 text-base'>phone number : </div>{' '}
             <div>90123123</div>
           </div>
-          <div className='flex space-x-2 items-center text-gray-800'>
-            <div className='text-gray-400 text-base'>
-              assurance contract number :{' '}
-            </div>{' '}
-            <div>123923981</div>
-          </div>
           <div className='opacity-0'>empty space</div>
 
           <div className='font-semibold text-xl'>
