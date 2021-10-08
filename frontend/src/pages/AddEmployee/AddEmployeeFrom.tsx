@@ -63,6 +63,9 @@ const AddEmployeeFrom = (props: Props) => {
         });
     },
   });
+
+  const handleReset = () => formik.resetForm();
+
   return (
     <div className='bg-gray-50 p-6 rounded-lg'>
       <form onSubmit={formik.handleSubmit}>
@@ -120,7 +123,12 @@ const AddEmployeeFrom = (props: Props) => {
               >
                 Submit
               </Button>
-              <Button type='reset' colorScheme='blue' variant='outline'>
+              <Button
+                type='reset'
+                colorScheme='blue'
+                variant='outline'
+                onClick={handleReset}
+              >
                 Reset
               </Button>
             </div>
