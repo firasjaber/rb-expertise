@@ -4,3 +4,4 @@ export { EmployeeProfile } from './EmployeeProfile';
 export { Appointments } from './Appointments';
 export { EditEmployee } from './EditEmployee';
 export { AddAppointment } from './AddAppointment';
+export { Missions } from './Missions';
