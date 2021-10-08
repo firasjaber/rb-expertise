@@ -6,6 +6,7 @@ import {
   EditEmployee,
   AddAppointment,
   Missions,
+  ViewMission,
 } from 'pages';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { Overview } from '../pages/Overview';
@@ -35,6 +36,9 @@ const Home = (props: Props) => {
       </Route>
       <Route path='/missions' exact>
         <Missions />
+      </Route>
+      <Route path='/missions/view' exact>
+        <ViewMission />
       </Route>
       <Route path='/overview' exact>
         <Overview />

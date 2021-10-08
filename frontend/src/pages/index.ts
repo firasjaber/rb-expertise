@@ -5,3 +5,4 @@ export { Appointments } from './Appointments';
 export { EditEmployee } from './EditEmployee';
 export { AddAppointment } from './AddAppointment';
 export { Missions } from './Missions';
+export { ViewMission } from './ViewMission';

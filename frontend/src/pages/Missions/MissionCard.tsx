@@ -4,6 +4,7 @@ import {
   EyeIcon,
   XCircleIcon,
 } from '@heroicons/react/outline';
+import { Link } from 'react-router-dom';
 
 interface Props {}
 
@@ -56,10 +57,12 @@ const MissionCard = (props: Props) => {
               </div>
             </div>
           )}
-          <div className='flex space-x-2 px-4 p-2 rounded-xl bg-gray-50 hover:bg-gray-200 transition-all cursor-pointer'>
-            <div>more details</div>
-            <EyeIcon className='h-6 w-6 text-gray-400' />
-          </div>
+          <Link to={`/missions/view`}>
+            <div className='flex space-x-2 px-4 p-2 rounded-xl bg-gray-50 hover:bg-gray-200 transition-all cursor-pointer'>
+              <div>more details</div>
+              <EyeIcon className='h-6 w-6 text-gray-400' />
+            </div>
+          </Link>
         </div>
       </div>
     </>
