@@ -8,6 +8,8 @@
     "@craco/craco": "^6.3.0",
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
+    "@fullcalendar/daygrid": "^5.9.0",
+    "@fullcalendar/react": "^5.9.0",
     "@headlessui/react": "^1.4.1",
     "@heroicons/react": "^1.0.4",
     "@testing-library/jest-dom": "^5.11.4",

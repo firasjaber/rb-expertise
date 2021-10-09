@@ -8,3 +8,4 @@ export { Missions } from './Missions';
 export { ViewMission } from './ViewMission';
 export { AddMission } from './AddMission';
 export { Overview } from './Overview';
+export { Calendar } from './Calender';

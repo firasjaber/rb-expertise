@@ -19,8 +19,8 @@ const links = [
   },
   {
     id: 1,
-    link: '/calender',
-    title: 'Calender',
+    link: '/calendar',
+    title: 'Calendar',
     icon: <CalendarIcon className='w-6 h-6' />,
   },
   {

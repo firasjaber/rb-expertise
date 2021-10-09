@@ -9,6 +9,7 @@ import {
   ViewMission,
   AddMission,
   Overview,
+  Calendar,
 } from 'pages';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
@@ -46,6 +47,9 @@ const Home = (props: Props) => {
       </Route>
       <Route path='/overview' exact>
         <Overview />
+      </Route>
+      <Route path='/calendar' exact>
+        <Calendar />
       </Route>
       <Route path='/' render={() => <Redirect to='/overview' />}></Route>
     </Switch>
