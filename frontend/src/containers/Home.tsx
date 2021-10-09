@@ -8,9 +8,9 @@ import {
   Missions,
   ViewMission,
   AddMission,
+  Overview,
 } from 'pages';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import { Overview } from '../pages/Overview';
 
 interface Props {}
 
