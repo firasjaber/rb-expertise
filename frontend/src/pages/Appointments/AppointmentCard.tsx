@@ -19,7 +19,7 @@ const AppointmentCard = ({ date = '21 Octobre 2021' }: Props) => {
     'https://images.generated.photos/GSOwjmIWKDjQQXed_9XFtQCG6zPuJrHevAFEtt2--Bg/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/ODY3MDQ1LmpwZw.jpg';
   return (
     <>
-      <div className='flex justify-between bg-gray-100 rounded-lg p-6'>
+      <div className='flex justify-between bg-white shadow rounded-lg p-6'>
         <div className='flex items-center'>
           <div className='flex flex-col text-gray-400 text-sm w-60'>
             <div>

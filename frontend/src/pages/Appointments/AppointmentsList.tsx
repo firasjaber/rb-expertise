@@ -5,7 +5,7 @@ interface Props {}
 
 const AppointmentsList = (props: Props) => {
   return (
-    <div className='flex flex-col bg-white rounded-lg shadow p-4 py-6 space-y-6'>
+    <div className='flex flex-col p-4 py-6 space-y-6'>
       <AppointmentCard date='02 Mars 2021' />
       <AppointmentCard />
       <AppointmentCard />

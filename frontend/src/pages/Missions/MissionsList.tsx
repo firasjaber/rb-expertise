@@ -5,7 +5,7 @@ interface Props {}
 
 const MissionsList = (props: Props) => {
   return (
-    <div className='flex flex-col bg-white rounded-lg shadow p-4 py-6 space-y-6'>
+    <div className='flex flex-col  p-4 py-6 space-y-6'>
       <MissionCard />
       <MissionCard />
       <MissionCard />
