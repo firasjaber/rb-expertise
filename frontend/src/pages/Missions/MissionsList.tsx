@@ -10,7 +10,12 @@ const MissionsList = (props: Props) => {
       {missionsData.map((missionData: any) => (
         <MissionCard data={missionData} />
       ))}
-      <Pagination />
+      <Pagination
+        all={missionsData.length}
+        currentEnd={3}
+        currentStart={1}
+        pages={2}
+      />
     </div>
   );
 };

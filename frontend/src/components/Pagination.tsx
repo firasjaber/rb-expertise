@@ -1,6 +1,18 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid';
 
-export default function Pagination() {
+interface Props {
+  all: number;
+  currentStart: number;
+  currentEnd: number;
+  pages: number;
+}
+
+export default function Pagination({
+  all,
+  currentEnd,
+  currentStart,
+  pages,
+}: Props) {
   return (
     <div className='bg-white px-4 py-3 flex items-center rounded-lg shadow justify-between border-t border-gray-200 sm:px-6'>
       <div className='flex-1 flex justify-between sm:hidden'>
@@ -20,9 +32,9 @@ export default function Pagination() {
       <div className='hidden sm:flex-1 sm:flex sm:items-center sm:justify-between'>
         <div>
           <p className='text-sm text-gray-700'>
-            Showing <span className='font-medium'>1</span> to{' '}
-            <span className='font-medium'>5</span> of{' '}
-            <span className='font-medium'>12</span> results
+            Showing <span className='font-medium'>{currentStart}</span> to{' '}
+            <span className='font-medium'>{currentEnd}</span> of{' '}
+            <span className='font-medium'>{all}</span> results
           </p>
         </div>
         <div>
@@ -44,24 +56,7 @@ export default function Pagination() {
             >
               1
             </a>
-            <a
-              href='#'
-              className='bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium'
-            >
-              2
-            </a>
-            <a
-              href='#'
-              className='bg-white border-gray-300 text-gray-500 hover:bg-gray-50 hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium'
-            >
-              3
-            </a>
-            <a
-              href='#'
-              className='bg-white border-gray-300 text-gray-500 hover:bg-gray-50 hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium'
-            >
-              4
-            </a>
+
             <a
               href='#'
               className='relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50'

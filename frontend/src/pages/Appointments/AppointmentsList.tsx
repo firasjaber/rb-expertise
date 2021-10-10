@@ -11,7 +11,12 @@ const AppointmentsList = (props: Props) => {
         <AppointmentCard key={appData.id} data={appData} />
       ))}
 
-      <Pagination />
+      <Pagination
+        all={appointmentsData.length}
+        currentStart={1}
+        currentEnd={6}
+        pages={1}
+      />
     </div>
   );
 };
