@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import Logo from './../utils/logo.svg';
+import Logo from './../utils/logo.png';
 import Profile from './../utils/profile.jpeg';
 import {
   TemplateIcon,
@@ -48,7 +48,7 @@ export const Sidebar = () => {
   return (
     <div className='flex flex-col justify-between items-center h-screen sticky top-0 w-80 bg-gradient-to-bl from-blue-700 to-blue-600'>
       <div className='w-full flex flex-col items-center'>
-        <img src={Logo} alt='logo' className='w-52 h-auto my-6' />
+        <img src={Logo} alt='logo' className='w-52 h-auto my-6 mt-10 -ml-6' />
         <div className='w-full h-0.5 bg-gray-300 opacity-25 rounded-3xl mb-6 mt-1'></div>
         {links.map((l) => (
           <div
