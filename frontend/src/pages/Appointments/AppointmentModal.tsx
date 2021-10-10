@@ -12,9 +12,10 @@ import {
 interface Props {
   isOpen: any;
   onClose: any;
+  data: any;
 }
 
-const AppointmentModal = ({ isOpen, onClose }: Props) => {
+const AppointmentModal = ({ isOpen, onClose, data }: Props) => {
   const imgUrl =
     'https://images.generated.photos/GSOwjmIWKDjQQXed_9XFtQCG6zPuJrHevAFEtt2--Bg/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/ODY3MDQ1LmpwZw.jpg';
   const imgUrl2 =
@@ -30,23 +31,22 @@ const AppointmentModal = ({ isOpen, onClose }: Props) => {
             <div className='w-3/5 space-y-2 text-gray-800'>
               <span>Appointment Details : </span>
               <div>
-                <span className='text-gray-500'>id : </span> 120
+                <span className='text-gray-500'>id : </span> {data.id}
               </div>
               <div>
-                <span className='text-gray-500'>title : </span> First
-                Appointment
+                <span className='text-gray-500'>title : </span> {data.title}
               </div>
               <div>
-                <span className='text-gray-500'>location : </span> Groove
-                Street, Gayland, 4224
+                <span className='text-gray-500'>location : </span>{' '}
+                {data.location}
               </div>
               <div>
-                <span className='text-gray-500'>meetup date : </span> 31 Octobre
-                2021, 10:00 AM
+                <span className='text-gray-500'>meetup date : </span>{' '}
+                {data.date}
               </div>
               <div>
-                <span className='text-gray-500'>added at : </span> 12 Octobre
-                2021, 9:15 AM
+                <span className='text-gray-500'>added at : </span>{' '}
+                {data.addedAt}
               </div>
               <div>
                 <span className='text-gray-500'>notes : </span>
@@ -57,7 +57,12 @@ const AppointmentModal = ({ isOpen, onClose }: Props) => {
                 </p>
               </div>
               <div className='text-yellow-500'>
-                <span className='text-gray-500'>status : </span> Pending
+                <span className='text-gray-500'>status : </span>{' '}
+                {data.accepted == null
+                  ? 'Pending'
+                  : data.accepted
+                  ? 'Accepted'
+                  : 'Rejected'}
               </div>
             </div>
             <div className='w-2/5 flex flex-col text-gray-800'>
@@ -65,29 +70,34 @@ const AppointmentModal = ({ isOpen, onClose }: Props) => {
                 <span className='text-gray-600'>Assigned to : </span>
                 <div className='flex items-center space-x-4'>
                   <img
-                    src={imgUrl}
+                    src={data.employeePic}
                     alt='elon'
                     className='w-10 h-10 rounded-full shadow'
                   />
-                  <div className='text-gray-800 text-xl'>Elon Muskirinho</div>
+                  <div className='text-gray-800 text-xl'>
+                    {data.employeeName}
+                  </div>
                 </div>
                 <div>
                   <span className='text-gray-500'>Email : </span>{' '}
-                  elonmuskirinho@gmail.com
+                  {data.employeeEmail}
                 </div>
                 <div>
-                  <span className='text-gray-500'>Phone : </span>94235445
+                  <span className='text-gray-500'>Phone : </span>
+                  {data.employeePhone}
                 </div>
               </div>
               <div className='mt-4 space-y-2'>
                 <span className='text-gray-600'>Assurance details : </span>
                 <div className='flex items-center space-x-4'>
                   <img
-                    src={imgUrl2}
+                    src={data.assurancePic}
                     alt='elon'
                     className='w-12 h-auto rounded-sm shadow'
                   />
-                  <div className='text-gray-800 text-lg'>STAR Assurances</div>
+                  <div className='text-gray-800 text-lg'>
+                    {data.assuranceName}
+                  </div>
                 </div>
               </div>
             </div>

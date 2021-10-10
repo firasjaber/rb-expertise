@@ -73,7 +73,7 @@ export const Sidebar = () => {
           <img src={Profile} alt='profile' className='w-12 h-12 rounded-full' />
           <div className='flex flex-col'>
             <div className='text-gray-100 text-lg font-semibold'>
-              Elon Muskirinho
+              Rami Bouajila
             </div>
             <span className='text-gray-300 text-sm -mt-1'>Admin</span>
           </div>

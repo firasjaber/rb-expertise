@@ -1,16 +1,21 @@
 import { Button } from '@chakra-ui/button';
 import { PageHeader } from 'components/PageHeader';
-import React from 'react';
 import './styles.css';
+import { missionsData } from './../../utils/placeholderData';
+import { useParams } from 'react-router-dom';
 
 interface Props {}
+interface EmployeeProfileParams {
+  id?: string;
+}
 
 const ViewMission = (props: Props) => {
   const imgUrl =
     'https://images.generated.photos/GSOwjmIWKDjQQXed_9XFtQCG6zPuJrHevAFEtt2--Bg/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/ODY3MDQ1LmpwZw.jpg';
   const imgUrl2 =
     'https://www.star.com.tn/templates/ts_bizspeak/images/logo.png';
-
+  const { id } = useParams<EmployeeProfileParams>();
+  const data = missionsData.find((mission) => mission.id == id);
   return (
     <div className='flex flex-col flex-1 p-10 px-14 font-nunito'>
       <PageHeader title='Mission' description='View mission' button={false} />
@@ -20,31 +25,31 @@ const ViewMission = (props: Props) => {
           <div className='font-semibold text-xl'>Missions Details : </div>
           <div className='flex space-x-2 items-center text-gray-800'>
             <div className='text-gray-400 text-base'>case number : </div>{' '}
-            <div>120</div>
+            <div>{data?.id}</div>
           </div>
           <div className='flex space-x-2 items-center text-gray-800'>
             <div className='text-gray-400 text-base'>title : </div>
-            <div>Mission to planet Mars</div>
+            <div>{data?.title}</div>
           </div>
           <div className='flex space-x-2 items-center text-gray-800'>
             <div className='text-gray-400 text-base'>address : </div>
-            <div>Groove Street, Earth 0000</div>
+            <div>{data?.address}</div>
           </div>
           <div className='flex space-x-2 items-center text-gray-800'>
             <div className='text-gray-400 text-base'>starts : </div>
-            <div>10 Octobre 2021</div>
+            <div>{data?.starts}</div>
           </div>
           <div className='flex space-x-2 items-center text-gray-800'>
             <div className='text-gray-400 text-base'>ends : </div>
-            <div>31 Octobre 2021</div>
+            <div>{data?.ends}</div>
           </div>
           <div className='flex space-x-2 items-center text-gray-800'>
             <div className='text-gray-400 text-base'>created : </div>
-            <div>02 Octobre 2021</div>
+            <div>{data?.createdAt}</div>
           </div>
           <div className='flex space-x-2 items-center text-yellow-400'>
             <div className='text-gray-400 text-base'>status : </div>
-            <div>pending</div>
+            <div>{data?.finished ? 'Finished' : 'Pending'}</div>
           </div>
           <div className='opacity-0'>empty space</div>
           <div className='font-semibold text-xl'>Vehicle Details : </div>
@@ -52,45 +57,45 @@ const ViewMission = (props: Props) => {
             <div className='text-gray-400 text-base'>
               registration number :{' '}
             </div>{' '}
-            <div>212 TUN 1235</div>
+            <div>{data?.regNumber}</div>
           </div>
           <div className='flex space-x-2 items-center text-gray-800'>
             <div className='text-gray-400 text-base'>holder : </div>
-            <div>Saber Khelifa</div>
+            <div>{data?.holderName}</div>
           </div>
           <div className='flex space-x-2 items-center text-gray-800'>
             <div className='text-gray-400 text-base'>holder email: </div>{' '}
-            <div>saberkheilve@gmail.com</div>
+            <div>{data?.holderEmail}</div>
           </div>
           <div className='flex space-x-2 items-center text-gray-800'>
             <div className='text-gray-400 text-base'>
               holder phone number :{' '}
             </div>{' '}
-            <div>90123123</div>
+            <div>{data?.holderPhone}</div>
           </div>
           <div className='flex space-x-2 items-center text-gray-800'>
             <div className='text-gray-400 text-base'>
               assurance contract number :{' '}
             </div>{' '}
-            <div>123923981</div>
+            <div>{data?.assuranceContractNumber}</div>
           </div>
           <div className='opacity-0'>empty space</div>
           <div className='font-semibold text-xl'>Car Mechanic Details : </div>
           <div className='flex space-x-2 items-center text-gray-800'>
             <div className='text-gray-400 text-base'>agency name : </div>{' '}
-            <div>Service Automobile Kebili</div>
+            <div>{data?.agencyName}</div>
           </div>
           <div className='flex space-x-2 items-center text-gray-800'>
             <div className='text-gray-400 text-base'>agency responsible : </div>
-            <div>Imed Khatha</div>
+            <div>{data?.agencyResponsible}</div>
           </div>
           <div className='flex space-x-2 items-center text-gray-800'>
             <div className='text-gray-400 text-base'>agency email: </div>{' '}
-            <div>saberkheilve@gmail.com</div>
+            <div>{data?.agencyEmail}</div>
           </div>
           <div className='flex space-x-2 items-center text-gray-800'>
             <div className='text-gray-400 text-base'>phone number : </div>{' '}
-            <div>90123123</div>
+            <div>{data?.agencyPhone}</div>
           </div>
           <div className='opacity-0'>empty space</div>
 
@@ -123,28 +128,28 @@ const ViewMission = (props: Props) => {
           <div className='text-gray-500'>Employee : </div>
           <div className='flex items-center space-x-4'>
             <img
-              src={imgUrl}
-              alt='elon'
+              src={data?.employeePic}
+              alt={data?.employeeName}
               className='w-10 h-10 rounded-full shadow'
             />
             <div className='text-gray-800 text-lg font-semibold'>
-              Elon Muskirinho
+              {data?.employeeName}
             </div>
           </div>
           <div className='text-gray-500 '>Assurance : </div>
           <div className='flex items-center space-x-4'>
-            <img src={imgUrl2} alt='elon' className='w-10 h-auto' />
+            <img src={data?.assurancePic} alt='elon' className='w-10 h-auto' />
             <div className='text-gray-800 text-lg font-semibold'>
-              STAR Assurances
+              {data?.assuranceName}
             </div>
           </div>
           <div className='flex items-center space-x-2 text-gray-800'>
             <div className='text-gray-400'>assurance email : </div>
-            <div>star@gmail.com</div>
+            <div>{data?.assuranceEmail}</div>
           </div>
           <div className='flex items-center space-x-2'>
             <div className='text-gray-400'>phone number : </div>
-            <div>93 231 321</div>
+            <div>{data?.assurancePhone}</div>
           </div>
         </div>
       </div>

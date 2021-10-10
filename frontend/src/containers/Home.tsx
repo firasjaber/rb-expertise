@@ -39,7 +39,7 @@ const Home = (props: Props) => {
       <Route path='/missions' exact>
         <Missions />
       </Route>
-      <Route path='/missions/view' exact>
+      <Route path='/missions/view/:id' exact>
         <ViewMission />
       </Route>
       <Route path='/missions/add'>
