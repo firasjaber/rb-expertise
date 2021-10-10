@@ -19,7 +19,7 @@ const EmployeeProfile = (props: Props) => {
   });
   return (
     <div className='flex flex-col flex-1 p-10 px-14 font-nunito'>
-      <PageHeader title='Employee' description='profile' />
+      <PageHeader title='Employee' description='profile' button={false} />
       <div>
         {error && error.message}
         {!error && (

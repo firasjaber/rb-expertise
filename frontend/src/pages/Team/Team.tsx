@@ -10,7 +10,13 @@ const Team = (props: Props) => {
   if (error) return <p>Error loading data...</p>;
   return (
     <div className='flex flex-col flex-1 p-10 px-14 font-nunito'>
-      <PageHeader title='Team' description='Employees list' />
+      <PageHeader
+        title='Team'
+        description='Employees list'
+        buttonName='Add Employee'
+        button={true}
+        buttonUrl='/team/addemployee'
+      />
       <div>
         {loading ? (
           <Skeleton height='400px' borderRadius='10px' />

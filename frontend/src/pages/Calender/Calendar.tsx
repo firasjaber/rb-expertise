@@ -9,6 +9,7 @@ const Calendar = (props: Props) => {
       <PageHeader
         title='Calendar'
         description='List of appointments & missions'
+        button={false}
       />
       <div className='bg-white rounded-lg shadow p-6'>
         <FullCalender />

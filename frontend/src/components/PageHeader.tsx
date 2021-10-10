@@ -5,9 +5,19 @@ import { Link } from 'react-router-dom';
 interface Props {
   title: string;
   description?: string;
+  button: boolean;
+  buttonName?: string;
+  buttonUrl?: string;
 }
 
-export const PageHeader = ({ title, description }: Props) => {
+export const PageHeader = ({
+  title,
+  description,
+  button,
+  buttonName,
+  buttonUrl,
+}: Props) => {
+  console.log(button);
   return (
     <div className='w-full flex justify-between items-center mb-5'>
       <div className='flex flex-col'>
@@ -17,14 +27,17 @@ export const PageHeader = ({ title, description }: Props) => {
         </span>
       </div>
       <div className='flex items-center space-x-4'>
-        <Link to='/team/addemployee'>
-          <Button
-            leftIcon={<PlusIcon className='w-4 h-4' />}
-            colorScheme='green'
-          >
-            Add Employee
-          </Button>
-        </Link>
+        {button && buttonUrl && (
+          <Link to={buttonUrl}>
+            <Button
+              leftIcon={<PlusIcon className='w-4 h-4' />}
+              colorScheme='green'
+            >
+              {buttonName}
+            </Button>
+          </Link>
+        )}
+
         <div className='w-100'>
           <InputGroup>
             <InputLeftElement

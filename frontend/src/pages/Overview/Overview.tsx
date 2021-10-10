@@ -7,7 +7,7 @@ interface Props {}
 const Overview = (props: Props) => {
   return (
     <div className='flex flex-col flex-1 p-10 px-14 font-nunito'>
-      <PageHeader title='Overview' description='Welcome' />
+      <PageHeader title='Overview' description='Welcome' button={false} />
       <QuickStats />
       <IncomingTask />
     </div>

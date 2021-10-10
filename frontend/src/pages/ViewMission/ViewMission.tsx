@@ -13,7 +13,7 @@ const ViewMission = (props: Props) => {
 
   return (
     <div className='flex flex-col flex-1 p-10 px-14 font-nunito'>
-      <PageHeader title='Mission' description='View mission' />
+      <PageHeader title='Mission' description='View mission' button={false} />
 
       <div className='flex w-full space-x-6'>
         <div className='w-3/5 bg-white rounded-lg p-4 shadow h-auto space-y-2 text-lg'>

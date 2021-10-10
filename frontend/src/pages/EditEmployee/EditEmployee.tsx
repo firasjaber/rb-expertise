@@ -17,7 +17,7 @@ const EditEmployee = (props: Props) => {
   });
   return (
     <div className='flex flex-col flex-1 p-10 px-14 font-nunito'>
-      <PageHeader title='Team' description='Edit employee' />
+      <PageHeader title='Team' description='Edit employee' button={false} />
       {data?.employee && (
         <EditEmployeeForm data={data} employeeId={Number(employeeId)} />
       )}

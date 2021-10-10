@@ -7,7 +7,11 @@ interface Props {}
 const AddAppointment = (props: Props) => {
   return (
     <div className='flex flex-col flex-1 p-10 px-14 font-nunito'>
-      <PageHeader title='Appointment' description='Add an Appointment' />
+      <PageHeader
+        title='Appointment'
+        description='Add an Appointment'
+        button={false}
+      />
       <AddAppointmentForm />
     </div>
   );
