@@ -32,6 +32,7 @@ model Employee {
   endDate      DateTime?
   createdAt    DateTime      @default(now())
   appointments Appointment[]
+  missions     Mission[]
 }
 
 model Assurance {
@@ -40,6 +41,7 @@ model Assurance {
   name         String
   pictureUrl   String
   appointments Appointment[]
+  missions     Mission[]
 }
 
 model Appointment {
@@ -55,4 +57,28 @@ model Appointment {
   assuranceId Int
   resolved    Boolean   @default(false)
   resolvedAt  DateTime?
+}
+
+model Mission {
+  id                      Int       @id @default(autoincrement())
+  title                   String
+  starts                  DateTime
+  ends                    DateTime
+  address                 String
+  finished                Boolean
+  createdAt               DateTime  @default(now())
+  carRegistrationNumber   String
+  carHolderName           String
+  carHolderEmail          String
+  carHolderPhone          String
+  assuranceContractNumber String
+  repairAgencyName        String
+  repairAgencyResponsible String
+  repairAgencyEmail       String
+  repairAgencyPhone       String
+  assurance               Assurance @relation(fields: [assuranceId], references: [id])
+  assuranceId             Int
+  employeeId              Int
+  employee                Employee  @relation(fields: [employeeId], references: [id])
+
 }
