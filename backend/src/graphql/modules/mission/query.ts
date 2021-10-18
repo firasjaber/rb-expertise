@@ -5,6 +5,7 @@ export const MissionQuery = extendType({
   type: 'Query',
   definition(t) {
     t.list.field('missions', {
+      description: 'Get All Missions',
       type: 'Mission',
       args: {
         searchQuery: nullable(stringArg()),
@@ -15,6 +16,7 @@ export const MissionQuery = extendType({
       },
     });
     t.field('mission', {
+      description: 'Get a single Mission by its ID',
       type: 'Mission',
       args: {
         missionId: nonNull(intArg()),

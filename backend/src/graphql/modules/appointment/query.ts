@@ -5,6 +5,7 @@ export const AppointmentQuery = extendType({
   type: 'Query',
   definition(t) {
     t.list.field('appointments', {
+      description: 'Get all Appointments',
       type: 'Appointment',
       args: {
         searchQuery: nullable(stringArg()),
@@ -15,6 +16,7 @@ export const AppointmentQuery = extendType({
       },
     });
     t.field('appointment', {
+      description: 'Get an appointment by ID',
       type: 'Appointment',
       args: {
         appointmentId: nonNull(intArg()),

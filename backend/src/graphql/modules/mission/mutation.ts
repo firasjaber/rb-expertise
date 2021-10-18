@@ -5,6 +5,7 @@ export const MissionMutation = extendType({
   type: 'Mutation',
   definition(t) {
     t.field('createMission', {
+      description: 'Create a mission',
       type: 'Mission',
       args: {
         data: arg({ type: nonNull(MissionCreateInput) }),
@@ -16,6 +17,7 @@ export const MissionMutation = extendType({
       },
     });
     t.field('resolveMission', {
+      description: 'Resolve a Mission by changing status to finished',
       type: 'Mission',
       args: {
         data: arg({ type: nonNull(MissionResolveInput) }),

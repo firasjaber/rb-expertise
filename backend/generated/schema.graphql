@@ -104,7 +104,7 @@ type Mission {
   employee: Employee
   employeeId: Int!
   ends: Date!
-  finished: Boolean
+  finished: Boolean!
   id: Int!
   repairAgencyEmail: String!
   repairAgencyName: String!
@@ -139,23 +139,49 @@ input MissionResolveInput {
 }
 
 type Mutation {
+  """Create an Appoinment"""
   createAppointment(data: AppointmentCreateInput!): Appointment
+
+  """Create a mission"""
   createMission(data: MissionCreateInput!): Mission
+
+  """Create an Employee"""
   createOneEmployee(data: EmployeeCreateInput!): Employee
+
+  """Delete an Employee by ID"""
   deleteOneEmployee(employeeId: Int!): Boolean
+
+  """Resolve an Appointment"""
   resolveAppointment(data: AppointmentResolveInput!): Appointment
+
+  """Resolve a Mission by changing status to finished"""
   resolveMission(data: MissionResolveInput!): Mission
+
+  """Update an employee by ID"""
   updateOneEmployee(data: EmployeeUpdateInput!): Employee
 }
 
 type Query {
+  """Get an appointment by ID"""
   appointment(appointmentId: Int!): Appointment
+
+  """Get all Appointments"""
   appointments(searchQuery: String): [Appointment]
+
+  """Get all Assurances Companies"""
   assurances: [Assurance]
+
+  """Get an Employee by ID"""
   employee(employeeId: Int!): Employee
+
+  """Get all Employees"""
   employees(searchQuery: String): [Employee]
   me: String
+
+  """Get a single Mission by its ID"""
   mission(missionId: Int!): Mission
+
+  """Get All Missions"""
   missions(searchQuery: String): [Mission]
 }
 

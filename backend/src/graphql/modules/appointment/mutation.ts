@@ -5,6 +5,7 @@ export const AppointmentMutation = extendType({
   type: 'Mutation',
   definition(t) {
     t.field('createAppointment', {
+      description: 'Create an Appoinment',
       type: 'Appointment',
       args: {
         data: arg({ type: nonNull(AppointmentCreateInput) }),
@@ -16,6 +17,7 @@ export const AppointmentMutation = extendType({
       },
     });
     t.field('resolveAppointment', {
+      description: 'Resolve an Appointment',
       type: 'Appointment',
       args: {
         data: arg({ type: nonNull(AppointmentResolveInput) }),

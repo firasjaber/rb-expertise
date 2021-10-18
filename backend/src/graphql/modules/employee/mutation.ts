@@ -5,6 +5,7 @@ export const EmployeeMutation = extendType({
   type: 'Mutation',
   definition(t) {
     t.field('createOneEmployee', {
+      description: 'Create an Employee',
       type: 'Employee',
       args: {
         data: arg({ type: nonNull(EmployeeCreateInput) }),
@@ -24,6 +25,7 @@ export const EmployeeMutation = extendType({
       },
     });
     t.field('updateOneEmployee', {
+      description: 'Update an employee by ID',
       type: 'Employee',
       args: {
         data: arg({ type: nonNull(EmployeeUpdateInput) }),
@@ -43,6 +45,7 @@ export const EmployeeMutation = extendType({
       },
     });
     t.field('deleteOneEmployee', {
+      description: 'Delete an Employee by ID',
       type: 'Boolean',
       args: {
         employeeId: nonNull(intArg()),

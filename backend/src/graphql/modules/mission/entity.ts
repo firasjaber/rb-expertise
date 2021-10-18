@@ -9,7 +9,7 @@ export const Mission = objectType({
     t.nonNull.date('starts');
     t.nonNull.date('ends');
     t.nonNull.string('address');
-    t.nullable.boolean('finished');
+    t.nonNull.boolean('finished');
     t.nonNull.date('createdAt');
     t.nonNull.string('carRegistrationNumber');
     t.nonNull.string('carHolderName');

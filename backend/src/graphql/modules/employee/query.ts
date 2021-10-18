@@ -5,6 +5,7 @@ export const EmployeeQuery = extendType({
   type: 'Query',
   definition(t) {
     t.list.field('employees', {
+      description: 'Get all Employees',
       type: 'Employee',
       args: {
         searchQuery: nullable(stringArg()),
@@ -15,6 +16,7 @@ export const EmployeeQuery = extendType({
       },
     });
     t.field('employee', {
+      description: 'Get an Employee by ID',
       type: 'Employee',
       args: {
         employeeId: nonNull(intArg()),

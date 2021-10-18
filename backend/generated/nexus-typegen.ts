@@ -150,7 +150,7 @@ export interface NexusGenObjects {
     createdAt: NexusGenScalars['Date']; // Date!
     employeeId: number; // Int!
     ends: NexusGenScalars['Date']; // Date!
-    finished?: boolean | null; // Boolean
+    finished: boolean; // Boolean!
     id: number; // Int!
     repairAgencyEmail: string; // String!
     repairAgencyName: string; // String!
@@ -229,7 +229,7 @@ export interface NexusGenFieldTypes {
     employee: NexusGenRootTypes['Employee'] | null; // Employee
     employeeId: number; // Int!
     ends: NexusGenScalars['Date']; // Date!
-    finished: boolean | null; // Boolean
+    finished: boolean; // Boolean!
     id: number; // Int!
     repairAgencyEmail: string; // String!
     repairAgencyName: string; // String!
