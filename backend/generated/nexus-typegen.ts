@@ -68,6 +68,28 @@ export interface NexusGenInputs {
     region: string; // String!
     startDate: NexusGenScalars['Date']; // Date!
   }
+  MissionCreateInput: { // input type
+    address: string; // String!
+    assuranceContractNumber: string; // String!
+    assuranceId: number; // Int!
+    carHolderEmail: string; // String!
+    carHolderName: string; // String!
+    carHolderPhone: string; // String!
+    carRegistrationNumber: string; // String!
+    employeeId: number; // Int!
+    ends: NexusGenScalars['Date']; // Date!
+    finished?: boolean | null; // Boolean
+    repairAgencyEmail: string; // String!
+    repairAgencyName: string; // String!
+    repairAgencyPhone: string; // String!
+    repairAgencyResponsible: string; // String!
+    starts: NexusGenScalars['Date']; // Date!
+    title: string; // String!
+  }
+  MissionResolveInput: { // input type
+    finished: boolean; // Boolean!
+    id: number; // Int!
+  }
 }
 
 export interface NexusGenEnums {
@@ -116,6 +138,26 @@ export interface NexusGenObjects {
     pictureUrl?: string | null; // String
     region?: string | null; // String
     startDate?: NexusGenScalars['Date'] | null; // Date
+  }
+  Mission: { // root type
+    address: string; // String!
+    assuranceContractNumber: string; // String!
+    assuranceId: number; // Int!
+    carHolderEmail: string; // String!
+    carHolderName: string; // String!
+    carHolderPhone: string; // String!
+    carRegistrationNumber: string; // String!
+    createdAt: NexusGenScalars['Date']; // Date!
+    employeeId: number; // Int!
+    ends: NexusGenScalars['Date']; // Date!
+    finished?: boolean | null; // Boolean
+    id: number; // Int!
+    repairAgencyEmail: string; // String!
+    repairAgencyName: string; // String!
+    repairAgencyPhone: string; // String!
+    repairAgencyResponsible: string; // String!
+    starts: NexusGenScalars['Date']; // Date!
+    title: string; // String!
   }
   Mutation: {};
   Query: {};
@@ -174,11 +216,35 @@ export interface NexusGenFieldTypes {
     region: string | null; // String
     startDate: NexusGenScalars['Date'] | null; // Date
   }
+  Mission: { // field return type
+    address: string; // String!
+    assurance: NexusGenRootTypes['Assurance'] | null; // Assurance
+    assuranceContractNumber: string; // String!
+    assuranceId: number; // Int!
+    carHolderEmail: string; // String!
+    carHolderName: string; // String!
+    carHolderPhone: string; // String!
+    carRegistrationNumber: string; // String!
+    createdAt: NexusGenScalars['Date']; // Date!
+    employee: NexusGenRootTypes['Employee'] | null; // Employee
+    employeeId: number; // Int!
+    ends: NexusGenScalars['Date']; // Date!
+    finished: boolean | null; // Boolean
+    id: number; // Int!
+    repairAgencyEmail: string; // String!
+    repairAgencyName: string; // String!
+    repairAgencyPhone: string; // String!
+    repairAgencyResponsible: string; // String!
+    starts: NexusGenScalars['Date']; // Date!
+    title: string; // String!
+  }
   Mutation: { // field return type
     createAppointment: NexusGenRootTypes['Appointment'] | null; // Appointment
+    createMission: NexusGenRootTypes['Mission'] | null; // Mission
     createOneEmployee: NexusGenRootTypes['Employee'] | null; // Employee
     deleteOneEmployee: boolean | null; // Boolean
     resolveAppointment: NexusGenRootTypes['Appointment'] | null; // Appointment
+    resolveMission: NexusGenRootTypes['Mission'] | null; // Mission
     updateOneEmployee: NexusGenRootTypes['Employee'] | null; // Employee
   }
   Query: { // field return type
@@ -188,6 +254,8 @@ export interface NexusGenFieldTypes {
     employee: NexusGenRootTypes['Employee'] | null; // Employee
     employees: Array<NexusGenRootTypes['Employee'] | null> | null; // [Employee]
     me: string | null; // String
+    mission: NexusGenRootTypes['Mission'] | null; // Mission
+    missions: Array<NexusGenRootTypes['Mission'] | null> | null; // [Mission]
   }
   User: { // field return type
     id: number | null; // Int
@@ -234,11 +302,35 @@ export interface NexusGenFieldTypeNames {
     region: 'String'
     startDate: 'Date'
   }
+  Mission: { // field return type name
+    address: 'String'
+    assurance: 'Assurance'
+    assuranceContractNumber: 'String'
+    assuranceId: 'Int'
+    carHolderEmail: 'String'
+    carHolderName: 'String'
+    carHolderPhone: 'String'
+    carRegistrationNumber: 'String'
+    createdAt: 'Date'
+    employee: 'Employee'
+    employeeId: 'Int'
+    ends: 'Date'
+    finished: 'Boolean'
+    id: 'Int'
+    repairAgencyEmail: 'String'
+    repairAgencyName: 'String'
+    repairAgencyPhone: 'String'
+    repairAgencyResponsible: 'String'
+    starts: 'Date'
+    title: 'String'
+  }
   Mutation: { // field return type name
     createAppointment: 'Appointment'
+    createMission: 'Mission'
     createOneEmployee: 'Employee'
     deleteOneEmployee: 'Boolean'
     resolveAppointment: 'Appointment'
+    resolveMission: 'Mission'
     updateOneEmployee: 'Employee'
   }
   Query: { // field return type name
@@ -248,6 +340,8 @@ export interface NexusGenFieldTypeNames {
     employee: 'Employee'
     employees: 'Employee'
     me: 'String'
+    mission: 'Mission'
+    missions: 'Mission'
   }
   User: { // field return type name
     id: 'Int'
@@ -260,6 +354,9 @@ export interface NexusGenArgTypes {
     createAppointment: { // args
       data: NexusGenInputs['AppointmentCreateInput']; // AppointmentCreateInput!
     }
+    createMission: { // args
+      data: NexusGenInputs['MissionCreateInput']; // MissionCreateInput!
+    }
     createOneEmployee: { // args
       data: NexusGenInputs['EmployeeCreateInput']; // EmployeeCreateInput!
     }
@@ -268,6 +365,9 @@ export interface NexusGenArgTypes {
     }
     resolveAppointment: { // args
       data: NexusGenInputs['AppointmentResolveInput']; // AppointmentResolveInput!
+    }
+    resolveMission: { // args
+      data: NexusGenInputs['MissionResolveInput']; // MissionResolveInput!
     }
     updateOneEmployee: { // args
       data: NexusGenInputs['EmployeeUpdateInput']; // EmployeeUpdateInput!
@@ -284,6 +384,12 @@ export interface NexusGenArgTypes {
       employeeId: number; // Int!
     }
     employees: { // args
+      searchQuery?: string | null; // String
+    }
+    mission: { // args
+      missionId: number; // Int!
+    }
+    missions: { // args
       searchQuery?: string | null; // String
     }
   }

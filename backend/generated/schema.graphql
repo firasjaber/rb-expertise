@@ -91,11 +91,60 @@ input EmployeeUpdateInput {
   startDate: Date!
 }
 
+type Mission {
+  address: String!
+  assurance: Assurance
+  assuranceContractNumber: String!
+  assuranceId: Int!
+  carHolderEmail: String!
+  carHolderName: String!
+  carHolderPhone: String!
+  carRegistrationNumber: String!
+  createdAt: Date!
+  employee: Employee
+  employeeId: Int!
+  ends: Date!
+  finished: Boolean
+  id: Int!
+  repairAgencyEmail: String!
+  repairAgencyName: String!
+  repairAgencyPhone: String!
+  repairAgencyResponsible: String!
+  starts: Date!
+  title: String!
+}
+
+input MissionCreateInput {
+  address: String!
+  assuranceContractNumber: String!
+  assuranceId: Int!
+  carHolderEmail: String!
+  carHolderName: String!
+  carHolderPhone: String!
+  carRegistrationNumber: String!
+  employeeId: Int!
+  ends: Date!
+  finished: Boolean
+  repairAgencyEmail: String!
+  repairAgencyName: String!
+  repairAgencyPhone: String!
+  repairAgencyResponsible: String!
+  starts: Date!
+  title: String!
+}
+
+input MissionResolveInput {
+  finished: Boolean!
+  id: Int!
+}
+
 type Mutation {
   createAppointment(data: AppointmentCreateInput!): Appointment
+  createMission(data: MissionCreateInput!): Mission
   createOneEmployee(data: EmployeeCreateInput!): Employee
   deleteOneEmployee(employeeId: Int!): Boolean
   resolveAppointment(data: AppointmentResolveInput!): Appointment
+  resolveMission(data: MissionResolveInput!): Mission
   updateOneEmployee(data: EmployeeUpdateInput!): Employee
 }
 
@@ -106,6 +155,8 @@ type Query {
   employee(employeeId: Int!): Employee
   employees(searchQuery: String): [Employee]
   me: String
+  mission(missionId: Int!): Mission
+  missions(searchQuery: String): [Mission]
 }
 
 type User {
