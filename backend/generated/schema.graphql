@@ -2,18 +2,42 @@
 ### Do not make changes to this file directly
 
 
+"""Appointment between client ,assurance and SEAT"""
 type Appointment {
+  """Appointment assigned assurance"""
   assurance: Assurance
+
+  """Appointment assigned assurance id"""
   assuranceId: Int!
+
+  """Appointment creation date"""
   createdAt: Date!
+
+  """Appointment potential date"""
   date: Date!
+
+  """Appointment assigned employee"""
   employee: Employee
+
+  """Appointment assigned employee id"""
   employeeId: Int!
+
+  """Appointment id"""
   id: Int!
+
+  """Appointment description"""
   location: String
+
+  """Appointment additional notes"""
   notes: String
+
+  """Appointment current status"""
   resolved: Boolean
+
+  """Appointment resolvation date"""
   resolvedAt: Date
+
+  """Appointment title"""
   title: String!
 }
 
@@ -31,11 +55,21 @@ input AppointmentResolveInput {
   resolved: Boolean!
 }
 
+"""Assurance company associated with SEAT"""
 type Assurance {
+  """appointments associated with correspending assurance company"""
   appointments: [Appointment]
+
+  """Assurance Company ID"""
   id: Int!
+
+  """Assurance company full name"""
   name: String
+
+  """Assurance company picture url"""
   pictureUrl: String
+
+  """Assurance Company Slug (Short Name)"""
   slug: String
 }
 
@@ -44,21 +78,51 @@ A date string, such as 2007-12-03, compliant with the `full-date` format outline
 """
 scalar Date
 
+"""SEAT Employee ( expert )"""
 type Employee {
+  """Employee address"""
   address: String
+
+  """Appointment associeted with this Employee"""
   appointments: [Appointment]
+
+  """Employee birth date"""
   birthDate: Date
+
+  """Employee city"""
   city: String
+
+  """Employee creation date"""
   createdAt: Date
+
+  """Employee email"""
   email: String
+
+  """Employee potention resigning date"""
   endDate: Date
+
+  """Employee first name"""
   firstName: String
+
+  """Employee id"""
   id: Int!
+
+  """Employee role"""
   isAdmin: Boolean
+
+  """Employee last name"""
   lastName: String
+
+  """Employee phone number"""
   phone: String
+
+  """Employee picture url"""
   pictureUrl: String
+
+  """Employee Region"""
   region: String
+
+  """Employee joining date"""
   startDate: Date
 }
 
@@ -91,6 +155,7 @@ input EmployeeUpdateInput {
   startDate: Date!
 }
 
+"""Missions associated between employee, assurance company, and SEAT"""
 type Mission {
   address: String!
   assurance: Assurance

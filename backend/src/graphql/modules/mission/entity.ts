@@ -2,6 +2,7 @@ import { objectType } from 'nexus';
 import { Context } from '../../../context';
 
 export const Mission = objectType({
+  description: 'Missions associated between employee, assurance company, and SEAT',
   name: 'Mission',
   definition(t) {
     t.nonNull.int('id');
