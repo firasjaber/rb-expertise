@@ -161,10 +161,6 @@ export interface NexusGenObjects {
   }
   Mutation: {};
   Query: {};
-  User: { // root type
-    id?: number | null; // Int
-    username?: string | null; // String
-  }
 }
 
 export interface NexusGenInterfaces {
@@ -253,13 +249,8 @@ export interface NexusGenFieldTypes {
     assurances: Array<NexusGenRootTypes['Assurance'] | null> | null; // [Assurance]
     employee: NexusGenRootTypes['Employee'] | null; // Employee
     employees: Array<NexusGenRootTypes['Employee'] | null> | null; // [Employee]
-    me: string | null; // String
     mission: NexusGenRootTypes['Mission'] | null; // Mission
     missions: Array<NexusGenRootTypes['Mission'] | null> | null; // [Mission]
-  }
-  User: { // field return type
-    id: number | null; // Int
-    username: string | null; // String
   }
 }
 
@@ -339,13 +330,8 @@ export interface NexusGenFieldTypeNames {
     assurances: 'Assurance'
     employee: 'Employee'
     employees: 'Employee'
-    me: 'String'
     mission: 'Mission'
     missions: 'Mission'
-  }
-  User: { // field return type name
-    id: 'Int'
-    username: 'String'
   }
 }
 

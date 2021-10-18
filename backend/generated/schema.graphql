@@ -176,16 +176,10 @@ type Query {
 
   """Get all Employees"""
   employees(searchQuery: String): [Employee]
-  me: String
 
   """Get a single Mission by its ID"""
   mission(missionId: Int!): Mission
 
   """Get All Missions"""
   missions(searchQuery: String): [Mission]
-}
-
-type User {
-  id: Int
-  username: String
 }
