@@ -16,21 +16,96 @@ export type Scalars = {
   Date: any;
 };
 
+/** Appointment between client ,assurance and SEAT */
+export type Appointment = {
+  __typename?: 'Appointment';
+  /** Appointment assigned assurance */
+  assurance?: Maybe<Assurance>;
+  /** Appointment assigned assurance id */
+  assuranceId: Scalars['Int'];
+  /** Appointment creation date */
+  createdAt: Scalars['Date'];
+  /** Appointment potential date */
+  date: Scalars['Date'];
+  /** Appointment assigned employee */
+  employee?: Maybe<Employee>;
+  /** Appointment assigned employee id */
+  employeeId: Scalars['Int'];
+  /** Appointment id */
+  id: Scalars['Int'];
+  /** Appointment description */
+  location?: Maybe<Scalars['String']>;
+  /** Appointment additional notes */
+  notes?: Maybe<Scalars['String']>;
+  /** Appointment current status */
+  resolved?: Maybe<Scalars['Boolean']>;
+  /** Appointment resolvation date */
+  resolvedAt?: Maybe<Scalars['Date']>;
+  /** Appointment title */
+  title: Scalars['String'];
+};
+
+export type AppointmentCreateInput = {
+  assuranceId: Scalars['Int'];
+  date: Scalars['Date'];
+  employeeId: Scalars['Int'];
+  location: Scalars['String'];
+  notes?: Maybe<Scalars['String']>;
+  title: Scalars['String'];
+};
+
+export type AppointmentResolveInput = {
+  id: Scalars['Int'];
+  resolved: Scalars['Boolean'];
+};
+
+/** Assurance company associated with SEAT */
+export type Assurance = {
+  __typename?: 'Assurance';
+  /** appointments associated with correspending assurance company */
+  appointments?: Maybe<Array<Maybe<Appointment>>>;
+  /** Assurance Company ID */
+  id: Scalars['Int'];
+  /** Assurance company full name */
+  name?: Maybe<Scalars['String']>;
+  /** Assurance company picture url */
+  pictureUrl?: Maybe<Scalars['String']>;
+  /** Assurance Company Slug (Short Name) */
+  slug?: Maybe<Scalars['String']>;
+};
+
+/** SEAT Employee ( expert ) */
 export type Employee = {
   __typename?: 'Employee';
+  /** Employee address */
   address?: Maybe<Scalars['String']>;
+  /** Appointment associeted with this Employee */
+  appointments?: Maybe<Array<Maybe<Appointment>>>;
+  /** Employee birth date */
   birthDate?: Maybe<Scalars['Date']>;
+  /** Employee city */
   city?: Maybe<Scalars['String']>;
+  /** Employee creation date */
   createdAt?: Maybe<Scalars['Date']>;
+  /** Employee email */
   email?: Maybe<Scalars['String']>;
+  /** Employee potention resigning date */
   endDate?: Maybe<Scalars['Date']>;
+  /** Employee first name */
   firstName?: Maybe<Scalars['String']>;
+  /** Employee id */
   id: Scalars['Int'];
+  /** Employee role */
   isAdmin?: Maybe<Scalars['Boolean']>;
+  /** Employee last name */
   lastName?: Maybe<Scalars['String']>;
+  /** Employee phone number */
   phone?: Maybe<Scalars['String']>;
+  /** Employee picture url */
   pictureUrl?: Maybe<Scalars['String']>;
+  /** Employee Region */
   region?: Maybe<Scalars['String']>;
+  /** Employee joining date */
   startDate?: Maybe<Scalars['Date']>;
 };
 
@@ -63,11 +138,81 @@ export type EmployeeUpdateInput = {
   startDate: Scalars['Date'];
 };
 
+/** Missions associated between employee, assurance company, and SEAT */
+export type Mission = {
+  __typename?: 'Mission';
+  address: Scalars['String'];
+  assurance?: Maybe<Assurance>;
+  assuranceContractNumber: Scalars['String'];
+  assuranceId: Scalars['Int'];
+  carHolderEmail: Scalars['String'];
+  carHolderName: Scalars['String'];
+  carHolderPhone: Scalars['String'];
+  carRegistrationNumber: Scalars['String'];
+  createdAt: Scalars['Date'];
+  employee?: Maybe<Employee>;
+  employeeId: Scalars['Int'];
+  ends: Scalars['Date'];
+  finished: Scalars['Boolean'];
+  id: Scalars['Int'];
+  repairAgencyEmail: Scalars['String'];
+  repairAgencyName: Scalars['String'];
+  repairAgencyPhone: Scalars['String'];
+  repairAgencyResponsible: Scalars['String'];
+  starts: Scalars['Date'];
+  title: Scalars['String'];
+};
+
+export type MissionCreateInput = {
+  address: Scalars['String'];
+  assuranceContractNumber: Scalars['String'];
+  assuranceId: Scalars['Int'];
+  carHolderEmail: Scalars['String'];
+  carHolderName: Scalars['String'];
+  carHolderPhone: Scalars['String'];
+  carRegistrationNumber: Scalars['String'];
+  employeeId: Scalars['Int'];
+  ends: Scalars['Date'];
+  finished?: Maybe<Scalars['Boolean']>;
+  repairAgencyEmail: Scalars['String'];
+  repairAgencyName: Scalars['String'];
+  repairAgencyPhone: Scalars['String'];
+  repairAgencyResponsible: Scalars['String'];
+  starts: Scalars['Date'];
+  title: Scalars['String'];
+};
+
+export type MissionResolveInput = {
+  finished: Scalars['Boolean'];
+  id: Scalars['Int'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
+  /** Create an Appoinment */
+  createAppointment?: Maybe<Appointment>;
+  /** Create a mission */
+  createMission?: Maybe<Mission>;
+  /** Create an Employee */
   createOneEmployee?: Maybe<Employee>;
+  /** Delete an Employee by ID */
   deleteOneEmployee?: Maybe<Scalars['Boolean']>;
+  /** Resolve an Appointment */
+  resolveAppointment?: Maybe<Appointment>;
+  /** Resolve a Mission by changing status to finished */
+  resolveMission?: Maybe<Mission>;
+  /** Update an employee by ID */
   updateOneEmployee?: Maybe<Employee>;
+};
+
+
+export type MutationCreateAppointmentArgs = {
+  data: AppointmentCreateInput;
+};
+
+
+export type MutationCreateMissionArgs = {
+  data: MissionCreateInput;
 };
 
 
@@ -81,15 +226,46 @@ export type MutationDeleteOneEmployeeArgs = {
 };
 
 
+export type MutationResolveAppointmentArgs = {
+  data: AppointmentResolveInput;
+};
+
+
+export type MutationResolveMissionArgs = {
+  data: MissionResolveInput;
+};
+
+
 export type MutationUpdateOneEmployeeArgs = {
   data: EmployeeUpdateInput;
 };
 
 export type Query = {
   __typename?: 'Query';
+  /** Get an appointment by ID */
+  appointment?: Maybe<Appointment>;
+  /** Get all Appointments */
+  appointments?: Maybe<Array<Maybe<Appointment>>>;
+  /** Get all Assurances Companies */
+  assurances?: Maybe<Array<Maybe<Assurance>>>;
+  /** Get an Employee by ID */
   employee?: Maybe<Employee>;
+  /** Get all Employees */
   employees?: Maybe<Array<Maybe<Employee>>>;
-  me?: Maybe<Scalars['String']>;
+  /** Get a single Mission by its ID */
+  mission?: Maybe<Mission>;
+  /** Get All Missions */
+  missions?: Maybe<Array<Maybe<Mission>>>;
+};
+
+
+export type QueryAppointmentArgs = {
+  appointmentId: Scalars['Int'];
+};
+
+
+export type QueryAppointmentsArgs = {
+  searchQuery?: Maybe<Scalars['String']>;
 };
 
 
@@ -102,10 +278,14 @@ export type QueryEmployeesArgs = {
   searchQuery?: Maybe<Scalars['String']>;
 };
 
-export type User = {
-  __typename?: 'User';
-  id?: Maybe<Scalars['Int']>;
-  username?: Maybe<Scalars['String']>;
+
+export type QueryMissionArgs = {
+  missionId: Scalars['Int'];
+};
+
+
+export type QueryMissionsArgs = {
+  searchQuery?: Maybe<Scalars['String']>;
 };
 
 export type CreateOneEmployeeMutationVariables = Exact<{
@@ -140,6 +320,11 @@ export type GetEmployeesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetEmployeesQuery = { __typename?: 'Query', employees?: Maybe<Array<Maybe<{ __typename?: 'Employee', id: number, firstName?: Maybe<string>, lastName?: Maybe<string>, email?: Maybe<string>, pictureUrl?: Maybe<string>, phone?: Maybe<string>, startDate?: Maybe<any> }>>> };
+
+export type GetMissionsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetMissionsQuery = { __typename?: 'Query', missions?: Maybe<Array<Maybe<{ __typename?: 'Mission', id: number, title: string, starts: any, ends: any, finished: boolean, employee?: Maybe<{ __typename?: 'Employee', firstName?: Maybe<string>, lastName?: Maybe<string>, pictureUrl?: Maybe<string> }> }>>> };
 
 
 export const CreateOneEmployeeDocument = gql`
@@ -350,3 +535,46 @@ export function useGetEmployeesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptio
 export type GetEmployeesQueryHookResult = ReturnType<typeof useGetEmployeesQuery>;
 export type GetEmployeesLazyQueryHookResult = ReturnType<typeof useGetEmployeesLazyQuery>;
 export type GetEmployeesQueryResult = Apollo.QueryResult<GetEmployeesQuery, GetEmployeesQueryVariables>;
+export const GetMissionsDocument = gql`
+    query GetMissions {
+  missions {
+    id
+    title
+    starts
+    ends
+    employee {
+      firstName
+      lastName
+      pictureUrl
+    }
+    finished
+  }
+}
+    `;
+
+/**
+ * __useGetMissionsQuery__
+ *
+ * To run a query within a React component, call `useGetMissionsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetMissionsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetMissionsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetMissionsQuery(baseOptions?: Apollo.QueryHookOptions<GetMissionsQuery, GetMissionsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetMissionsQuery, GetMissionsQueryVariables>(GetMissionsDocument, options);
+      }
+export function useGetMissionsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetMissionsQuery, GetMissionsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetMissionsQuery, GetMissionsQueryVariables>(GetMissionsDocument, options);
+        }
+export type GetMissionsQueryHookResult = ReturnType<typeof useGetMissionsQuery>;
+export type GetMissionsLazyQueryHookResult = ReturnType<typeof useGetMissionsLazyQuery>;
+export type GetMissionsQueryResult = Apollo.QueryResult<GetMissionsQuery, GetMissionsQueryVariables>;

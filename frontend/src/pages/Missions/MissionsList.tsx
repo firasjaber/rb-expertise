@@ -1,20 +1,21 @@
 import Pagination from 'components/Pagination';
 import MissionCard from './MissionCard';
-import { missionsData } from './../../utils/placeholderData';
 
-interface Props {}
+interface Props {
+  missionsData?: any;
+}
 
-const MissionsList = (props: Props) => {
+const MissionsList = ({ missionsData }: Props) => {
   return (
     <div className='flex flex-col  p-4 py-6 space-y-6'>
-      {missionsData.map((missionData: any) => (
+      {missionsData?.map((missionData: any) => (
         <MissionCard data={missionData} />
       ))}
       <Pagination
-        all={missionsData.length}
-        currentEnd={3}
+        all={missionsData?.length ?? 10}
+        currentEnd={missionsData?.length < 5 ? missionsData?.length : 5}
         currentStart={1}
-        pages={2}
+        pages={Math.floor(missionsData.length / 5) + 1}
       />
     </div>
   );

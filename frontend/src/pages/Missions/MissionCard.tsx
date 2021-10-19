@@ -6,6 +6,7 @@ interface Props {
 }
 
 const MissionCard = ({ data }: Props) => {
+  console.log(data.employee.firstName);
   return (
     <>
       <div className='flex justify-between bg-white rounded-lg shadow p-6'>
@@ -24,11 +25,13 @@ const MissionCard = ({ data }: Props) => {
           </div>
           <div className='flex items-center space-x-4'>
             <img
-              src={data.employeePic}
-              alt={data.employeeName}
+              src={data.employee.pictureUrl}
+              alt={data.employee.firstName}
               className='w-12 h-12 rounded-full shadow'
             />
-            <div className='text-gray-800 text-xl'>{data.employeeName}</div>
+            <div className='text-gray-800 text-xl'>
+              {data.employee.firstName + ' ' + data.employee.lastName}
+            </div>
           </div>
         </div>
 

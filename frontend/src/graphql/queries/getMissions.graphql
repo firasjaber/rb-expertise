@@ -1,0 +1,14 @@
+query GetMissions {
+  missions {
+    id
+    title
+    starts
+    ends
+    employee {
+      firstName
+      lastName
+      pictureUrl
+    }
+    finished
+  }
+}
