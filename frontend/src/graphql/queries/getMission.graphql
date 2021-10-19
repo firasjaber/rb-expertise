@@ -1,0 +1,31 @@
+query getSingleMissionQuery($missionId: Int!) {
+  mission(missionId: $missionId) {
+    id
+    title
+    starts
+    ends
+    address
+    finished
+    createdAt
+    carRegistrationNumber
+    carHolderName
+    carHolderEmail
+    carHolderPhone
+    assuranceContractNumber
+    repairAgencyName
+    repairAgencyResponsible
+    repairAgencyEmail
+    repairAgencyPhone
+    employeeId
+    employee {
+      firstName
+      lastName
+      pictureUrl
+    }
+    assurance {
+      slug
+      name
+      pictureUrl
+    }
+  }
+}

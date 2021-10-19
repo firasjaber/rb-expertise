@@ -321,6 +321,13 @@ export type GetEmployeesQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetEmployeesQuery = { __typename?: 'Query', employees?: Maybe<Array<Maybe<{ __typename?: 'Employee', id: number, firstName?: Maybe<string>, lastName?: Maybe<string>, email?: Maybe<string>, pictureUrl?: Maybe<string>, phone?: Maybe<string>, startDate?: Maybe<any> }>>> };
 
+export type GetSingleMissionQueryQueryVariables = Exact<{
+  missionId: Scalars['Int'];
+}>;
+
+
+export type GetSingleMissionQueryQuery = { __typename?: 'Query', mission?: Maybe<{ __typename?: 'Mission', id: number, title: string, starts: any, ends: any, address: string, finished: boolean, createdAt: any, carRegistrationNumber: string, carHolderName: string, carHolderEmail: string, carHolderPhone: string, assuranceContractNumber: string, repairAgencyName: string, repairAgencyResponsible: string, repairAgencyEmail: string, repairAgencyPhone: string, employeeId: number, employee?: Maybe<{ __typename?: 'Employee', firstName?: Maybe<string>, lastName?: Maybe<string>, pictureUrl?: Maybe<string> }>, assurance?: Maybe<{ __typename?: 'Assurance', slug?: Maybe<string>, name?: Maybe<string>, pictureUrl?: Maybe<string> }> }> };
+
 export type GetMissionsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -535,6 +542,67 @@ export function useGetEmployeesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptio
 export type GetEmployeesQueryHookResult = ReturnType<typeof useGetEmployeesQuery>;
 export type GetEmployeesLazyQueryHookResult = ReturnType<typeof useGetEmployeesLazyQuery>;
 export type GetEmployeesQueryResult = Apollo.QueryResult<GetEmployeesQuery, GetEmployeesQueryVariables>;
+export const GetSingleMissionQueryDocument = gql`
+    query getSingleMissionQuery($missionId: Int!) {
+  mission(missionId: $missionId) {
+    id
+    title
+    starts
+    ends
+    address
+    finished
+    createdAt
+    carRegistrationNumber
+    carHolderName
+    carHolderEmail
+    carHolderPhone
+    assuranceContractNumber
+    repairAgencyName
+    repairAgencyResponsible
+    repairAgencyEmail
+    repairAgencyPhone
+    employeeId
+    employee {
+      firstName
+      lastName
+      pictureUrl
+    }
+    assurance {
+      slug
+      name
+      pictureUrl
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetSingleMissionQueryQuery__
+ *
+ * To run a query within a React component, call `useGetSingleMissionQueryQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetSingleMissionQueryQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetSingleMissionQueryQuery({
+ *   variables: {
+ *      missionId: // value for 'missionId'
+ *   },
+ * });
+ */
+export function useGetSingleMissionQueryQuery(baseOptions: Apollo.QueryHookOptions<GetSingleMissionQueryQuery, GetSingleMissionQueryQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetSingleMissionQueryQuery, GetSingleMissionQueryQueryVariables>(GetSingleMissionQueryDocument, options);
+      }
+export function useGetSingleMissionQueryLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetSingleMissionQueryQuery, GetSingleMissionQueryQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetSingleMissionQueryQuery, GetSingleMissionQueryQueryVariables>(GetSingleMissionQueryDocument, options);
+        }
+export type GetSingleMissionQueryQueryHookResult = ReturnType<typeof useGetSingleMissionQueryQuery>;
+export type GetSingleMissionQueryLazyQueryHookResult = ReturnType<typeof useGetSingleMissionQueryLazyQuery>;
+export type GetSingleMissionQueryQueryResult = Apollo.QueryResult<GetSingleMissionQueryQuery, GetSingleMissionQueryQueryVariables>;
 export const GetMissionsDocument = gql`
     query GetMissions {
   missions {

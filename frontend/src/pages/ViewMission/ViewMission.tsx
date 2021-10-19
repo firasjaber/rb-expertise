@@ -3,6 +3,8 @@ import { PageHeader } from 'components/PageHeader';
 import './styles.css';
 import { missionsData } from './../../utils/placeholderData';
 import { useParams } from 'react-router-dom';
+import { useGetSingleMissionQueryQuery } from 'generated/graphql';
+import { Skeleton } from '@chakra-ui/skeleton';
 
 interface Props {}
 interface EmployeeProfileParams {
@@ -10,12 +12,13 @@ interface EmployeeProfileParams {
 }
 
 const ViewMission = (props: Props) => {
-  const imgUrl =
-    'https://images.generated.photos/GSOwjmIWKDjQQXed_9XFtQCG6zPuJrHevAFEtt2--Bg/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/ODY3MDQ1LmpwZw.jpg';
-  const imgUrl2 =
-    'https://www.star.com.tn/templates/ts_bizspeak/images/logo.png';
   const { id } = useParams<EmployeeProfileParams>();
-  const data = missionsData.find((mission) => mission.id == id);
+  const { data, loading, error } = useGetSingleMissionQueryQuery({
+    variables: { missionId: Number(id) },
+    fetchPolicy: 'no-cache',
+  });
+  if (error) return <p>Error loading data...</p>;
+  if (loading) return <Skeleton height='800px' borderRadius='10px' />;
   return (
     <div className='flex flex-col flex-1 p-10 px-14 font-nunito'>
       <PageHeader title='Mission' description='View mission' button={false} />
@@ -25,31 +28,31 @@ const ViewMission = (props: Props) => {
           <div className='font-semibold text-xl'>Missions Details : </div>
           <div className='flex space-x-2 items-center text-gray-800'>
             <div className='text-gray-400 text-base'>case number : </div>{' '}
-            <div>{data?.id}</div>
+            <div>{data?.mission?.id}</div>
           </div>
           <div className='flex space-x-2 items-center text-gray-800'>
             <div className='text-gray-400 text-base'>title : </div>
-            <div>{data?.title}</div>
+            <div>{data?.mission?.title}</div>
           </div>
           <div className='flex space-x-2 items-center text-gray-800'>
             <div className='text-gray-400 text-base'>address : </div>
-            <div>{data?.address}</div>
+            <div>{data?.mission?.address}</div>
           </div>
           <div className='flex space-x-2 items-center text-gray-800'>
             <div className='text-gray-400 text-base'>starts : </div>
-            <div>{data?.starts}</div>
+            <div>{data?.mission?.starts}</div>
           </div>
           <div className='flex space-x-2 items-center text-gray-800'>
             <div className='text-gray-400 text-base'>ends : </div>
-            <div>{data?.ends}</div>
+            <div>{data?.mission?.ends}</div>
           </div>
           <div className='flex space-x-2 items-center text-gray-800'>
             <div className='text-gray-400 text-base'>created : </div>
-            <div>{data?.createdAt}</div>
+            <div>{data?.mission?.createdAt}</div>
           </div>
           <div className='flex space-x-2 items-center text-yellow-400'>
             <div className='text-gray-400 text-base'>status : </div>
-            <div>{data?.finished ? 'Finished' : 'Pending'}</div>
+            <div>{data?.mission?.finished ? 'Finished' : 'Pending'}</div>
           </div>
           <div className='opacity-0'>empty space</div>
           <div className='font-semibold text-xl'>Vehicle Details : </div>
@@ -57,45 +60,45 @@ const ViewMission = (props: Props) => {
             <div className='text-gray-400 text-base'>
               registration number :{' '}
             </div>{' '}
-            <div>{data?.regNumber}</div>
+            <div>{data?.mission?.carRegistrationNumber}</div>
           </div>
           <div className='flex space-x-2 items-center text-gray-800'>
             <div className='text-gray-400 text-base'>holder : </div>
-            <div>{data?.holderName}</div>
+            <div>{data?.mission?.carHolderName}</div>
           </div>
           <div className='flex space-x-2 items-center text-gray-800'>
             <div className='text-gray-400 text-base'>holder email: </div>{' '}
-            <div>{data?.holderEmail}</div>
+            <div>{data?.mission?.carHolderEmail}</div>
           </div>
           <div className='flex space-x-2 items-center text-gray-800'>
             <div className='text-gray-400 text-base'>
               holder phone number :{' '}
             </div>{' '}
-            <div>{data?.holderPhone}</div>
+            <div>{data?.mission?.carHolderPhone}</div>
           </div>
           <div className='flex space-x-2 items-center text-gray-800'>
             <div className='text-gray-400 text-base'>
               assurance contract number :{' '}
             </div>{' '}
-            <div>{data?.assuranceContractNumber}</div>
+            <div>{data?.mission?.assuranceContractNumber}</div>
           </div>
           <div className='opacity-0'>empty space</div>
           <div className='font-semibold text-xl'>Car Mechanic Details : </div>
           <div className='flex space-x-2 items-center text-gray-800'>
             <div className='text-gray-400 text-base'>agency name : </div>{' '}
-            <div>{data?.agencyName}</div>
+            <div>{data?.mission?.repairAgencyName}</div>
           </div>
           <div className='flex space-x-2 items-center text-gray-800'>
             <div className='text-gray-400 text-base'>agency responsible : </div>
-            <div>{data?.agencyResponsible}</div>
+            <div>{data?.mission?.repairAgencyResponsible}</div>
           </div>
           <div className='flex space-x-2 items-center text-gray-800'>
             <div className='text-gray-400 text-base'>agency email: </div>{' '}
-            <div>{data?.agencyEmail}</div>
+            <div>{data?.mission?.repairAgencyEmail}</div>
           </div>
           <div className='flex space-x-2 items-center text-gray-800'>
             <div className='text-gray-400 text-base'>phone number : </div>{' '}
-            <div>{data?.agencyPhone}</div>
+            <div>{data?.mission?.repairAgencyPhone}</div>
           </div>
           <div className='opacity-0'>empty space</div>
 
@@ -128,28 +131,34 @@ const ViewMission = (props: Props) => {
           <div className='text-gray-500'>Employee : </div>
           <div className='flex items-center space-x-4'>
             <img
-              src={data?.employeePic}
-              alt={data?.employeeName}
+              src={data?.mission?.employee?.pictureUrl ?? ''}
+              alt={data?.mission?.employee?.firstName ?? ''}
               className='w-10 h-10 rounded-full shadow'
             />
             <div className='text-gray-800 text-lg font-semibold'>
-              {data?.employeeName}
+              {data?.mission?.employee?.firstName +
+                ' ' +
+                data?.mission?.employee?.lastName}
             </div>
           </div>
           <div className='text-gray-500 '>Assurance : </div>
           <div className='flex items-center space-x-4'>
-            <img src={data?.assurancePic} alt='elon' className='w-10 h-auto' />
+            <img
+              src={data?.mission?.assurance?.pictureUrl ?? ''}
+              alt='assurance'
+              className='w-10 h-auto'
+            />
             <div className='text-gray-800 text-lg font-semibold'>
-              {data?.assuranceName}
+              {data?.mission?.assurance?.name}
             </div>
           </div>
           <div className='flex items-center space-x-2 text-gray-800'>
             <div className='text-gray-400'>assurance email : </div>
-            <div>{data?.assuranceEmail}</div>
+            <div>contact@star.com.tn</div>
           </div>
           <div className='flex items-center space-x-2'>
             <div className='text-gray-400'>phone number : </div>
-            <div>{data?.assurancePhone}</div>
+            <div>80100200</div>
           </div>
         </div>
       </div>
