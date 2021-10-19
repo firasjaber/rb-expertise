@@ -1,0 +1,24 @@
+query getAppointments {
+  appointments {
+    id
+    title
+    location
+    date
+    notes
+    resolved
+    resolvedAt
+    assuranceId
+    employeeId
+    employee {
+      firstName
+      lastName
+      email
+      pictureUrl
+      phone
+    }
+    assurance {
+      pictureUrl
+      name
+    }
+  }
+}

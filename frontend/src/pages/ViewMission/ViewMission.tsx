@@ -1,7 +1,6 @@
 import { Button } from '@chakra-ui/button';
 import { PageHeader } from 'components/PageHeader';
 import './styles.css';
-import { missionsData } from './../../utils/placeholderData';
 import { useParams } from 'react-router-dom';
 import { useGetSingleMissionQueryQuery } from 'generated/graphql';
 import { Skeleton } from '@chakra-ui/skeleton';

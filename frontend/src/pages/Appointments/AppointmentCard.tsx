@@ -28,16 +28,18 @@ const AppointmentCard = ({ date = '21 Octobre 2021', data }: Props) => {
           </div>
           <div className='flex items-center space-x-4'>
             <img
-              src={data.employeePic}
-              alt={data.employeeName}
+              src={data.employee?.pictureUrl}
+              alt={data.employee?.firstName}
               className='w-12 h-12 rounded-full shadow'
             />
-            <div className='text-gray-800 text-xl'>{data.employeeName} </div>
+            <div className='text-gray-800 text-xl'>
+              {data.employee?.firstName + ' ' + data.employee?.lastName}
+            </div>
           </div>
         </div>
 
         <div className='flex items-center space-x-4'>
-          {data.resolved && data.accepted && (
+          {data.resolvedAt && data.resolved && (
             <div className='flex items-center justify-center w-36 bg-green-100 opacity-80 p-2 rounded-xl'>
               <div className='flex space-x-2'>
                 <CheckCircleIcon className='h-6 w-6 text-gray-600' />
@@ -45,7 +47,7 @@ const AppointmentCard = ({ date = '21 Octobre 2021', data }: Props) => {
               </div>
             </div>
           )}
-          {data.resolved && !data.accepted && (
+          {data.resolvedAt && !data.resolved && (
             <div className='flex items-center justify-center w-36 bg-red-100 opacity-80 p-2 rounded-xl'>
               <div className='flex space-x-2'>
                 <XCircleIcon className='h-6 w-6 text-gray-600' />
@@ -53,7 +55,7 @@ const AppointmentCard = ({ date = '21 Octobre 2021', data }: Props) => {
               </div>
             </div>
           )}
-          {data.accepted == null && (
+          {data.resolvedAt == null && (
             <div className='flex items-center justify-center w-36 bg-yellow-100 opacity-80 p-2 rounded-xl'>
               <div className='flex space-x-2'>
                 <ClockIcon className='h-6 w-6 text-gray-600' />

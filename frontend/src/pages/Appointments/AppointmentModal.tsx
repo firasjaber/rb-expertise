@@ -58,9 +58,9 @@ const AppointmentModal = ({ isOpen, onClose, data }: Props) => {
               </div>
               <div className='text-yellow-500'>
                 <span className='text-gray-500'>status : </span>{' '}
-                {data.accepted == null
+                {data.resolvedAt == null
                   ? 'Pending'
-                  : data.accepted
+                  : data.resolved
                   ? 'Accepted'
                   : 'Rejected'}
               </div>
@@ -70,33 +70,33 @@ const AppointmentModal = ({ isOpen, onClose, data }: Props) => {
                 <span className='text-gray-600'>Assigned to : </span>
                 <div className='flex items-center space-x-4'>
                   <img
-                    src={data.employeePic}
+                    src={data.employee?.pictureUrl}
                     alt='elon'
                     className='w-10 h-10 rounded-full shadow'
                   />
                   <div className='text-gray-800 text-xl'>
-                    {data.employeeName}
+                    {data.employee?.firstName + ' ' + data.employee?.lastName}
                   </div>
                 </div>
                 <div>
                   <span className='text-gray-500'>Email : </span>{' '}
-                  {data.employeeEmail}
+                  {data.employee?.email}
                 </div>
                 <div>
                   <span className='text-gray-500'>Phone : </span>
-                  {data.employeePhone}
+                  {data.employee?.phone}
                 </div>
               </div>
               <div className='mt-4 space-y-2'>
                 <span className='text-gray-600'>Assurance details : </span>
                 <div className='flex items-center space-x-4'>
                   <img
-                    src={data.assurancePic}
+                    src={data.assurance?.pictureUrl}
                     alt='elon'
                     className='w-12 h-auto rounded-sm shadow'
                   />
                   <div className='text-gray-800 text-lg'>
-                    {data.assuranceName}
+                    {data.assurance?.name}
                   </div>
                 </div>
               </div>
