@@ -17,7 +17,6 @@ export const PageHeader = ({
   buttonName,
   buttonUrl,
 }: Props) => {
-  console.log(button);
   return (
     <div className='w-full flex justify-between items-center mb-5'>
       <div className='flex flex-col'>
