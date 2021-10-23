@@ -4,6 +4,7 @@ import {
   UsersIcon,
 } from '@heroicons/react/outline';
 import { TQuickStats } from 'types';
+import { minTwoDigits } from 'utils/formatters';
 
 interface Props {
   stats: TQuickStats;
@@ -20,7 +21,7 @@ const QuickStats = ({ stats }: Props) => {
           <div className='text-gray-500 text-lg space-y-1'>
             <div className='text-xl'>Employees</div>
             <div className='text-gray-800 text-5xl font-bold'>
-              {stats.employeesNumber}
+              {minTwoDigits(stats.employeesNumber)}
             </div>
             <div className='text-base'>total employees</div>
           </div>
@@ -32,10 +33,10 @@ const QuickStats = ({ stats }: Props) => {
           <div className='text-gray-500 text-lg space-y-1'>
             <div className='text-xl'>Appointments</div>
             <div className='text-gray-800 text-5xl font-bold'>
-              {stats.appointmentNumber}
+              {minTwoDigits(stats.appointmentNumber)}
             </div>
             <div className='text-base'>
-              {stats.activeAppointmentsNumber} active appointments
+              {minTwoDigits(stats.activeAppointmentsNumber)} active appointments
             </div>
           </div>
           <div className=''>
@@ -46,10 +47,10 @@ const QuickStats = ({ stats }: Props) => {
           <div className='text-gray-500 text-lg space-y-1'>
             <div className='text-xl'>Missions</div>
             <div className='text-gray-800 text-5xl font-bold'>
-              {stats.missionsNumber}
+              {minTwoDigits(stats.missionsNumber)}
             </div>
             <div className='text-base'>
-              {stats.activeMissionsNumber} active missions
+              {minTwoDigits(stats.activeMissionsNumber)} active missions
             </div>
           </div>
           <div className=''>

@@ -25,3 +25,7 @@ export const formatIncomingTasks = (appointments: any, missions: any) => {
 
   return final;
 };
+
+export function minTwoDigits(n: any) {
+  return (n < 10 ? '0' : '') + n;
+}
