@@ -1,0 +1,22 @@
+query getIncomingTasks($activeAppointment: Boolean, $activeMission: Boolean) {
+  appointments(active: $activeAppointment) {
+    id
+    title
+    date
+    employee {
+      pictureUrl
+      firstName
+      lastName
+    }
+  }
+  missions(active: $activeMission) {
+    id
+    title
+    starts
+    employee {
+      firstName
+      lastName
+      pictureUrl
+    }
+  }
+}
