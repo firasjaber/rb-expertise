@@ -364,6 +364,7 @@ export interface NexusGenArgTypes {
       appointmentId: number; // Int!
     }
     appointments: { // args
+      active?: boolean | null; // Boolean
       searchQuery?: string | null; // String
     }
     employee: { // args
@@ -376,6 +377,7 @@ export interface NexusGenArgTypes {
       missionId: number; // Int!
     }
     missions: { // args
+      active?: boolean | null; // Boolean
       searchQuery?: string | null; // String
     }
   }

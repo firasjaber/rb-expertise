@@ -231,7 +231,7 @@ type Query {
   appointment(appointmentId: Int!): Appointment
 
   """Get all Appointments"""
-  appointments(searchQuery: String): [Appointment]
+  appointments(active: Boolean, searchQuery: String): [Appointment]
 
   """Get all Assurances Companies"""
   assurances: [Assurance]
@@ -246,5 +246,5 @@ type Query {
   mission(missionId: Int!): Mission
 
   """Get All Missions"""
-  missions(searchQuery: String): [Mission]
+  missions(active: Boolean, searchQuery: String): [Mission]
 }

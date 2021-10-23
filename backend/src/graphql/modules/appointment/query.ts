@@ -1,4 +1,4 @@
-import { extendType, nonNull, intArg, nullable, stringArg } from 'nexus';
+import { extendType, nonNull, intArg, nullable, stringArg, booleanArg } from 'nexus';
 import { UserInputError } from 'apollo-server';
 
 export const AppointmentQuery = extendType({
@@ -9,10 +9,15 @@ export const AppointmentQuery = extendType({
       type: 'Appointment',
       args: {
         searchQuery: nullable(stringArg()),
+        active: nullable(booleanArg()),
       },
       resolve(_root, args, ctx) {
-        const searchQ = args.searchQuery ?? undefined;
-        return ctx.prisma.appointment.findMany({ where: { title: { contains: searchQ } } });
+        if (!args.active) {
+          const searchQ = args.searchQuery ?? undefined;
+          return ctx.prisma.appointment.findMany({ where: { title: { contains: searchQ } } });
+        } else {
+          return ctx.prisma.appointment.findMany({ where: { resolved: false } });
+        }
       },
     });
     t.field('appointment', {
