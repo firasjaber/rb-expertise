@@ -6,7 +6,6 @@ interface Props {
 }
 
 const MissionCard = ({ data }: Props) => {
-  console.log(data.employee.firstName);
   return (
     <>
       <div className='flex justify-between bg-white rounded-lg shadow p-6'>
