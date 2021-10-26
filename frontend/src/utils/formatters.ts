@@ -26,6 +26,25 @@ export const formatIncomingTasks = (appointments: any, missions: any) => {
   return final;
 };
 
+export const formatDate = (appointments: any, missions: any) => {
+  let final: any[] = [];
+  appointments.map((app: any) => {
+    const data = {
+      title: app.title,
+      date: app.date,
+    };
+    return final.push(data);
+  });
+  missions.map((miss: any) => {
+    const data = {
+      title: miss.title,
+      date: miss.starts,
+    };
+    return final.push(data);
+  });
+  return final;
+};
+
 export function minTwoDigits(n: any) {
   return (n < 10 ? '0' : '') + n;
 }
