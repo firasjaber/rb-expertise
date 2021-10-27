@@ -1,0 +1,6 @@
+mutation createAppointment($createAppointmentData: AppointmentCreateInput!) {
+  createAppointment(data: $createAppointmentData) {
+    id
+    title
+  }
+}

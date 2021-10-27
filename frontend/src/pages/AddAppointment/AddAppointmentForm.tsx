@@ -2,8 +2,10 @@ import { Button, Heading, Text, Textarea } from '@chakra-ui/react';
 import FormikInput from 'components/FormikInput';
 import ListInput from 'components/ListInput';
 import { useFormik } from 'formik';
+import { useCreateAppointmentMutation } from 'generated/graphql';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
+import { useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
 
 interface Props {}
@@ -26,6 +28,8 @@ const employeesList = [
 ];
 
 const AddAppointmentForm = (props: Props) => {
+  const [createAppointment, { loading }] = useCreateAppointmentMutation();
+  const history = useHistory();
   const [selectedEmployee, setSelectedEmployee] = useState(employeesList[0]);
   const [selectedAssurance, setSelectedAssurance] = useState(assurance[0]);
 
@@ -49,8 +53,15 @@ const AddAppointmentForm = (props: Props) => {
     validateOnBlur: false,
     validateOnChange: false,
     onSubmit: (values) => {
-      toast.success('Appointment added succesfully!');
-      console.log(values);
+      createAppointment({ variables: { createAppointmentData: values } })
+        .then(() => {
+          toast.success('Appointment added succesfully!');
+          formik.resetForm();
+          history.push('/team');
+        })
+        .catch((err) => {
+          toast.error('Error occured, try later...');
+        });
     },
   });
 
@@ -102,7 +113,7 @@ const AddAppointmentForm = (props: Props) => {
                 type='submit'
                 colorScheme='blue'
                 w='120px'
-                //isLoading={loading}
+                isLoading={loading}
               >
                 Submit
               </Button>

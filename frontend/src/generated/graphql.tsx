@@ -290,6 +290,20 @@ export type QueryMissionsArgs = {
   searchQuery?: Maybe<Scalars['String']>;
 };
 
+export type CreateAppointmentMutationVariables = Exact<{
+  createAppointmentData: AppointmentCreateInput;
+}>;
+
+
+export type CreateAppointmentMutation = { __typename?: 'Mutation', createAppointment?: Maybe<{ __typename?: 'Appointment', id: number, title: string }> };
+
+export type CreateMissionMutationVariables = Exact<{
+  createMissionData: MissionCreateInput;
+}>;
+
+
+export type CreateMissionMutation = { __typename?: 'Mutation', createMission?: Maybe<{ __typename?: 'Mission', id: number }> };
+
 export type CreateOneEmployeeMutationVariables = Exact<{
   createOneEmployeeData: EmployeeCreateInput;
 }>;
@@ -349,6 +363,73 @@ export type GetMissionsQueryVariables = Exact<{ [key: string]: never; }>;
 export type GetMissionsQuery = { __typename?: 'Query', missions?: Maybe<Array<Maybe<{ __typename?: 'Mission', id: number, title: string, starts: any, ends: any, finished: boolean, employee?: Maybe<{ __typename?: 'Employee', firstName?: Maybe<string>, lastName?: Maybe<string>, pictureUrl?: Maybe<string> }> }>>> };
 
 
+export const CreateAppointmentDocument = gql`
+    mutation createAppointment($createAppointmentData: AppointmentCreateInput!) {
+  createAppointment(data: $createAppointmentData) {
+    id
+    title
+  }
+}
+    `;
+export type CreateAppointmentMutationFn = Apollo.MutationFunction<CreateAppointmentMutation, CreateAppointmentMutationVariables>;
+
+/**
+ * __useCreateAppointmentMutation__
+ *
+ * To run a mutation, you first call `useCreateAppointmentMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateAppointmentMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createAppointmentMutation, { data, loading, error }] = useCreateAppointmentMutation({
+ *   variables: {
+ *      createAppointmentData: // value for 'createAppointmentData'
+ *   },
+ * });
+ */
+export function useCreateAppointmentMutation(baseOptions?: Apollo.MutationHookOptions<CreateAppointmentMutation, CreateAppointmentMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateAppointmentMutation, CreateAppointmentMutationVariables>(CreateAppointmentDocument, options);
+      }
+export type CreateAppointmentMutationHookResult = ReturnType<typeof useCreateAppointmentMutation>;
+export type CreateAppointmentMutationResult = Apollo.MutationResult<CreateAppointmentMutation>;
+export type CreateAppointmentMutationOptions = Apollo.BaseMutationOptions<CreateAppointmentMutation, CreateAppointmentMutationVariables>;
+export const CreateMissionDocument = gql`
+    mutation createMission($createMissionData: MissionCreateInput!) {
+  createMission(data: $createMissionData) {
+    id
+  }
+}
+    `;
+export type CreateMissionMutationFn = Apollo.MutationFunction<CreateMissionMutation, CreateMissionMutationVariables>;
+
+/**
+ * __useCreateMissionMutation__
+ *
+ * To run a mutation, you first call `useCreateMissionMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateMissionMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createMissionMutation, { data, loading, error }] = useCreateMissionMutation({
+ *   variables: {
+ *      createMissionData: // value for 'createMissionData'
+ *   },
+ * });
+ */
+export function useCreateMissionMutation(baseOptions?: Apollo.MutationHookOptions<CreateMissionMutation, CreateMissionMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateMissionMutation, CreateMissionMutationVariables>(CreateMissionDocument, options);
+      }
+export type CreateMissionMutationHookResult = ReturnType<typeof useCreateMissionMutation>;
+export type CreateMissionMutationResult = Apollo.MutationResult<CreateMissionMutation>;
+export type CreateMissionMutationOptions = Apollo.BaseMutationOptions<CreateMissionMutation, CreateMissionMutationVariables>;
 export const CreateOneEmployeeDocument = gql`
     mutation createOneEmployee($createOneEmployeeData: EmployeeCreateInput!) {
   createOneEmployee(data: $createOneEmployeeData) {
