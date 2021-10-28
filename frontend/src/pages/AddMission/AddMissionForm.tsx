@@ -2,8 +2,10 @@ import { Button, Heading, Text, Textarea } from '@chakra-ui/react';
 import FormikInput from 'components/FormikInput';
 import ListInput from 'components/ListInput';
 import { useFormik } from 'formik';
+import { useCreateMissionMutation } from 'generated/graphql';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
+import { useHistory } from 'react-router';
 import * as Yup from 'yup';
 
 interface Props {}
@@ -26,6 +28,8 @@ const employeesList = [
 ];
 
 const AddMissionForm = (props: Props) => {
+  const [createMission, { loading }] = useCreateMissionMutation();
+  const history = useHistory();
   const [selectedEmployee, setSelectedEmployee] = useState(employeesList[0]);
   const [selectedAssurance, setSelectedAssurance] = useState(assurance[0]);
 
@@ -47,10 +51,11 @@ const AddMissionForm = (props: Props) => {
       employeeId: selectedEmployee.id,
       assuranceId: selectedAssurance.id,
     },
-    validationSchema: Yup.object({
+    /* validationSchema: Yup.object({
       title: Yup.string().min(3, 'Must be 15 characters or more').required(),
       location: Yup.string().min(3, 'Must be 15 characters or more').required(),
       startDate: Yup.date().required(),
+      endDate: Yup.date().required(),
       registrationNumber: Yup.string().required(),
       holder: Yup.string().required(),
       holderEmail: Yup.string().required(),
@@ -60,16 +65,40 @@ const AddMissionForm = (props: Props) => {
       agencyEmail: Yup.string().required(),
       agencyPhoneNumber: Yup.string().required(),
       assuranceContractNumber: Yup.string().required(),
-      endDate: Yup.date().required(),
-      notes: Yup.string(),
       employeeId: Yup.number().moreThan(-1, 'employee is required'),
       assuranceId: Yup.number().moreThan(-1, 'assurance is required'),
-    }),
+    }), */
     validateOnBlur: false,
     validateOnChange: false,
     onSubmit: (values) => {
-      toast.success('Appointment added succesfully!');
-      console.log(values);
+      let data = {
+        carRegistrationNumber: values.registrationNumber,
+        carHolderName: values.holder,
+        carHolderEmail: values.holderEmail,
+        carHolderPhone: values.holderPhoneNumber,
+        repairAgencyName: values.agencyName,
+        repairAgencyResponsible: values.agencyResponsible,
+        repairAgencyEmail: values.agencyEmail,
+        repairAgencyPhone: values.agencyPhoneNumber,
+        address: values.location,
+        starts: values.startDate,
+        ends: values.endDate,
+        employeeId: values.employeeId,
+        assuranceId: values.assuranceId,
+        assuranceContractNumber: values.assuranceContractNumber,
+        title: values.title,
+        finished: false,
+      };
+      createMission({ variables: { createMissionData: data } })
+        .then(() => {
+          toast.success('Mission added succesfully!');
+          formik.resetForm();
+          history.push('/missions');
+        })
+        .catch((err) => {
+          console.log(err.message);
+          toast.error('Error occured, try later...');
+        });
     },
   });
 
@@ -116,6 +145,12 @@ const AddMissionForm = (props: Props) => {
               field='registrationNumber'
               type='text'
               ph='000 TUN 0000'
+            />
+            <FormikInput
+              formik={formik}
+              field='holder'
+              type='text'
+              ph='Jhon Doe'
             />
             <FormikInput
               formik={formik}
