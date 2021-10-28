@@ -325,6 +325,13 @@ export type ResolveAppointmentMutationVariables = Exact<{
 
 export type ResolveAppointmentMutation = { __typename?: 'Mutation', resolveAppointment?: Maybe<{ __typename?: 'Appointment', id: number }> };
 
+export type ResolveMissionMutationVariables = Exact<{
+  data: MissionResolveInput;
+}>;
+
+
+export type ResolveMissionMutation = { __typename?: 'Mutation', resolveMission?: Maybe<{ __typename?: 'Mission', id: number }> };
+
 export type UpdateOneEmployeeMutationMutationVariables = Exact<{
   updateOneEmployeeData: EmployeeUpdateInput;
 }>;
@@ -551,6 +558,39 @@ export function useResolveAppointmentMutation(baseOptions?: Apollo.MutationHookO
 export type ResolveAppointmentMutationHookResult = ReturnType<typeof useResolveAppointmentMutation>;
 export type ResolveAppointmentMutationResult = Apollo.MutationResult<ResolveAppointmentMutation>;
 export type ResolveAppointmentMutationOptions = Apollo.BaseMutationOptions<ResolveAppointmentMutation, ResolveAppointmentMutationVariables>;
+export const ResolveMissionDocument = gql`
+    mutation ResolveMission($data: MissionResolveInput!) {
+  resolveMission(data: $data) {
+    id
+  }
+}
+    `;
+export type ResolveMissionMutationFn = Apollo.MutationFunction<ResolveMissionMutation, ResolveMissionMutationVariables>;
+
+/**
+ * __useResolveMissionMutation__
+ *
+ * To run a mutation, you first call `useResolveMissionMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useResolveMissionMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [resolveMissionMutation, { data, loading, error }] = useResolveMissionMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useResolveMissionMutation(baseOptions?: Apollo.MutationHookOptions<ResolveMissionMutation, ResolveMissionMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<ResolveMissionMutation, ResolveMissionMutationVariables>(ResolveMissionDocument, options);
+      }
+export type ResolveMissionMutationHookResult = ReturnType<typeof useResolveMissionMutation>;
+export type ResolveMissionMutationResult = Apollo.MutationResult<ResolveMissionMutation>;
+export type ResolveMissionMutationOptions = Apollo.BaseMutationOptions<ResolveMissionMutation, ResolveMissionMutationVariables>;
 export const UpdateOneEmployeeMutationDocument = gql`
     mutation UpdateOneEmployeeMutation($updateOneEmployeeData: EmployeeUpdateInput!) {
   updateOneEmployee(data: $updateOneEmployeeData) {

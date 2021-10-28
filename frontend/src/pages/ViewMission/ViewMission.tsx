@@ -1,9 +1,15 @@
 import { Button } from '@chakra-ui/button';
 import { PageHeader } from 'components/PageHeader';
 import './styles.css';
-import { useParams } from 'react-router-dom';
-import { useGetSingleMissionQueryQuery } from 'generated/graphql';
+import { useHistory, useParams } from 'react-router-dom';
+import {
+  useGetSingleMissionQueryQuery,
+  useResolveMissionMutation,
+} from 'generated/graphql';
 import { Skeleton } from '@chakra-ui/skeleton';
+import { Link } from '@chakra-ui/react';
+import toast from 'react-hot-toast';
+import { useEffect, useState } from 'react';
 
 interface Props {}
 interface EmployeeProfileParams {
@@ -16,6 +22,44 @@ const ViewMission = (props: Props) => {
     variables: { missionId: Number(id) },
     fetchPolicy: 'no-cache',
   });
+  const [resolveMission, { loading: resolveLoading }] =
+    useResolveMissionMutation();
+
+  const history = useHistory();
+  const handleResolve = () => {
+    resolveMission({
+      variables: { data: { id: Number(id), finished: true } },
+    })
+      .then(() => toast.success('Mission Resolved !'))
+      .catch(() => toast.error('Error occured, try again...'));
+    history.push('/missions');
+  };
+  //file upload
+  const [file, setFile] = useState<any>('');
+  const [fileUrl, setFileUrl] = useState<any>('');
+  const [uploadLoading, setUploadLoading] = useState<Boolean>(false);
+  useEffect(() => {
+    if (file[0]) uploadImage(file[0]);
+  }, [file]);
+  const uploadImage = async (file: any) => {
+    setUploadLoading(true);
+    const data = new FormData();
+    data.append('file', file);
+    data.append('upload_preset', 'seat_preset');
+    data.append('cloud_name', 'dpqezvuku');
+    const res = await fetch(
+      'https://api.cloudinary.com/v1_1/dpqezvuku/image/upload',
+      {
+        method: 'post',
+        body: data,
+      }
+    );
+    const resData = await res.json();
+    setFileUrl(resData);
+    setUploadLoading(true);
+    console.log(resData);
+  };
+
   if (error) return <p>Error loading data...</p>;
   if (loading) return <Skeleton height='800px' borderRadius='10px' />;
   return (
@@ -111,15 +155,37 @@ const ViewMission = (props: Props) => {
                 type='file'
                 id='file'
                 aria-label='File browser example'
-                accept='.jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*'
+                accept='.jpg, .png, .jpeg, .gif, .bmp, .tif,.pdf, .tiff|image/*'
+                onChange={(e) => setFile(e.target.files)}
                 multiple
               />
-              <span className='file-custom'>Select a file to upload</span>
-              <div className='text-gray-400 mt-3 ml-2 underline'>view file</div>
+              <span className='file-custom'>
+                {file ? file[0]?.name : 'Select a file to upload'}
+              </span>
+              {uploadLoading && !fileUrl && (
+                <div className='text-gray-400 mt-3 ml-2 underline'>
+                  loading...
+                </div>
+              )}
+              {fileUrl && (
+                <Link
+                  target='_blank'
+                  href='https://cloudinary.com/console/c-2a2ee49074574c1e8c19b097e90e1a/media_library/folders/be645750818909db5ec8480b9c29799d9f'
+                >
+                  <div className='text-gray-400 mt-3 ml-2 underline'>
+                    view file
+                  </div>
+                </Link>
+              )}
             </label>
           </div>
           <div className=''>
-            <Button colorScheme='green' my='2'>
+            <Button
+              colorScheme='green'
+              my='2'
+              onClick={handleResolve}
+              isLoading={resolveLoading}
+            >
               Mark as Done
             </Button>
           </div>

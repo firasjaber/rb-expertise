@@ -1,0 +1,5 @@
+mutation ResolveMission($data: MissionResolveInput!) {
+  resolveMission(data: $data) {
+    id
+  }
+}

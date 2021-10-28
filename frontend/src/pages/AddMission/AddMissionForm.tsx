@@ -6,6 +6,7 @@ import {
   useCreateMissionMutation,
   useGetAssurancesQuery,
   useGetEmployeesQuery,
+  useResolveMissionMutation,
 } from 'generated/graphql';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
@@ -118,9 +119,7 @@ const AddMissionForm = (props: Props) => {
     setSelectedAssurance(data);
     formik.setFieldValue('assuranceId', data.id);
   };
-
   const handleReset = () => formik.resetForm();
-  // TODO : Fix Submit
 
   return (
     <div className='bg-gray-50 p-6 rounded-lg'>
