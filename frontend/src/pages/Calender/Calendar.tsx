@@ -7,7 +7,9 @@ interface Props {}
 
 const Calendar = (props: Props) => {
   const { data } = useGetIncomingTasksQuery();
-  const formattedData = formatDate(data?.appointments, data?.missions);
+  const formattedData = data
+    ? formatDate(data?.appointments, data?.missions)
+    : [];
   return (
     <div className='flex flex-col flex-1 p-10 px-14 font-nunito'>
       <PageHeader
