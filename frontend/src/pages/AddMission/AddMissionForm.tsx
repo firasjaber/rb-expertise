@@ -1,4 +1,4 @@
-import { Button, Heading, Text, Textarea } from '@chakra-ui/react';
+import { Button, Heading } from '@chakra-ui/react';
 import FormikInput from 'components/FormikInput';
 import ListInput from 'components/ListInput';
 import { useFormik } from 'formik';
@@ -6,17 +6,15 @@ import {
   useCreateMissionMutation,
   useGetAssurancesQuery,
   useGetEmployeesQuery,
-  useResolveMissionMutation,
 } from 'generated/graphql';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useHistory } from 'react-router';
-import * as Yup from 'yup';
 
 interface Props {}
 
 const AddMissionForm = (props: Props) => {
-  const [createMission, { loading }] = useCreateMissionMutation();
+  const [createMission] = useCreateMissionMutation();
   const history = useHistory();
 
   //dynamic dropboxs
