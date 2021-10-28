@@ -1,0 +1,5 @@
+mutation ResolveAppointment($data: AppointmentResolveInput!) {
+  resolveAppointment(data: $data) {
+    id
+  }
+}

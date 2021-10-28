@@ -64,7 +64,7 @@ const AddAppointmentForm = (props: Props) => {
         .then(() => {
           toast.success('Appointment added succesfully!');
           formik.resetForm();
-          history.push('/appointment');
+          history.push('/appointments');
         })
         .catch((err) => {
           toast.error('Error occured, try later...');

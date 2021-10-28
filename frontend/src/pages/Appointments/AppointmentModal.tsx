@@ -8,6 +8,9 @@ import {
   ModalHeader,
   ModalOverlay,
 } from '@chakra-ui/react';
+import { useResolveAppointmentMutation } from 'generated/graphql';
+import toast from 'react-hot-toast';
+import { useHistory } from 'react-router';
 
 interface Props {
   isOpen: any;
@@ -16,10 +19,16 @@ interface Props {
 }
 
 const AppointmentModal = ({ isOpen, onClose, data }: Props) => {
-  const imgUrl =
-    'https://images.generated.photos/GSOwjmIWKDjQQXed_9XFtQCG6zPuJrHevAFEtt2--Bg/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/ODY3MDQ1LmpwZw.jpg';
-  const imgUrl2 =
-    'https://www.star.com.tn/templates/ts_bizspeak/images/logo.png';
+  const [resolveAppointment, { loading }] = useResolveAppointmentMutation();
+  const history = useHistory();
+  const handleResolve = (type: boolean) => {
+    resolveAppointment({ variables: { data: { id: data.id, resolved: type } } })
+      .then(() => toast.success('Appoinment Resolved !'))
+      .catch(() => toast.error('Error occured, try again...'));
+    history.push('/appointments');
+    onClose();
+  };
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
@@ -108,8 +117,22 @@ const AppointmentModal = ({ isOpen, onClose, data }: Props) => {
           <div className='flex justify-between w-full'>
             <div className='space-x-2'>
               <span className='text-gray-500'>Resolve Actions : </span>
-              <Button colorScheme='green'>Accept</Button>
-              <Button colorScheme='yellow'>Decline</Button>
+              <Button
+                name='accept'
+                colorScheme='green'
+                onClick={() => handleResolve(true)}
+                isLoading={loading}
+              >
+                Accept
+              </Button>
+              <Button
+                name='decline'
+                colorScheme='yellow'
+                onClick={() => handleResolve(false)}
+                isLoading={loading}
+              >
+                Decline
+              </Button>
             </div>
             <Button colorScheme='blue' mr={3} onClick={onClose}>
               Close
