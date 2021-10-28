@@ -2,7 +2,11 @@ import { Button, Heading, Text, Textarea } from '@chakra-ui/react';
 import FormikInput from 'components/FormikInput';
 import ListInput from 'components/ListInput';
 import { useFormik } from 'formik';
-import { useCreateAppointmentMutation } from 'generated/graphql';
+import {
+  useCreateAppointmentMutation,
+  useGetAssurancesQuery,
+  useGetEmployeesQuery,
+} from 'generated/graphql';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useHistory } from 'react-router-dom';
@@ -10,28 +14,31 @@ import * as Yup from 'yup';
 
 interface Props {}
 
-const assurance = [
-  { id: -1, name: 'Select an agency' },
-  { id: 1, name: 'STAR Assurances' },
-  { id: 2, name: 'GAT Assurances' },
-  { id: 3, name: 'AMI Assurances' },
-  { id: 4, name: 'Coman Assurances' },
-];
-
-const employeesList = [
-  { id: -1, name: 'Select an employee' },
-  { id: 1, name: 'Elon Muskirinho' },
-  { id: 2, name: 'Firas Jaber' },
-  { id: 3, name: 'Jamila LCK' },
-  { id: 4, name: 'Brahim Niggro' },
-  { id: 5, name: 'Imed Eleven' },
-];
-
 const AddAppointmentForm = (props: Props) => {
   const [createAppointment, { loading }] = useCreateAppointmentMutation();
   const history = useHistory();
-  const [selectedEmployee, setSelectedEmployee] = useState(employeesList[0]);
-  const [selectedAssurance, setSelectedAssurance] = useState(assurance[0]);
+
+  //dynamic dropboxs
+  const { data: assurancesd } = useGetAssurancesQuery();
+  let assruancesList = assurancesd?.assurances ?? [];
+  let assurances = [
+    {
+      id: -1,
+      name: 'Select an agency',
+    },
+    ...assruancesList,
+  ];
+
+  const { data: employeesd } = useGetEmployeesQuery();
+  let employeesListd = employeesd?.employees ?? [];
+  let list: any = [];
+  employeesListd.map((emp) =>
+    list.push({ id: emp?.id, name: emp?.firstName + ' ' + emp?.lastName })
+  );
+  let employees = [{ id: -1, name: 'Select an employee' }, ...list];
+
+  const [selectedEmployee, setSelectedEmployee] = useState(employees[0]);
+  const [selectedAssurance, setSelectedAssurance] = useState(assurances[0]);
 
   const formik = useFormik({
     initialValues: {
@@ -39,8 +46,8 @@ const AddAppointmentForm = (props: Props) => {
       location: '',
       date: '',
       notes: '',
-      employeeId: selectedEmployee.id,
-      assuranceId: selectedAssurance.id,
+      employeeId: selectedEmployee?.id ?? -1,
+      assuranceId: selectedAssurance?.id ?? -1,
     },
     validationSchema: Yup.object({
       title: Yup.string().min(3, 'Must be 15 characters or more').required(),
@@ -57,7 +64,7 @@ const AddAppointmentForm = (props: Props) => {
         .then(() => {
           toast.success('Appointment added succesfully!');
           formik.resetForm();
-          history.push('/team');
+          history.push('/appointment');
         })
         .catch((err) => {
           toast.error('Error occured, try later...');
@@ -105,7 +112,7 @@ const AddAppointmentForm = (props: Props) => {
               value={formik.values.notes}
               name='notes'
               onChange={formik.handleChange}
-              placeholder='Here is a sample placeholder'
+              placeholder='Notes about the appoinment...'
               size='sm'
             />
             <div className='space-x-2 mt-5'>
@@ -135,7 +142,7 @@ const AddAppointmentForm = (props: Props) => {
               <div>
                 employee :
                 <ListInput
-                  list={employeesList}
+                  list={employees}
                   selected={selectedEmployee}
                   setSelected={customHandleEmployeeSelection}
                   error={formik.errors.employeeId ? true : false}
@@ -149,7 +156,7 @@ const AddAppointmentForm = (props: Props) => {
               <div>
                 assurance :
                 <ListInput
-                  list={assurance}
+                  list={assurances}
                   selected={selectedAssurance}
                   setSelected={customHandleAssuranceSelection}
                   error={formik.errors.assuranceId ? true : false}

@@ -330,6 +330,11 @@ export type GetAppointmentsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetAppointmentsQuery = { __typename?: 'Query', appointments?: Maybe<Array<Maybe<{ __typename?: 'Appointment', id: number, title: string, location?: Maybe<string>, date: any, notes?: Maybe<string>, resolved?: Maybe<boolean>, resolvedAt?: Maybe<any>, assuranceId: number, employeeId: number, employee?: Maybe<{ __typename?: 'Employee', firstName?: Maybe<string>, lastName?: Maybe<string>, email?: Maybe<string>, pictureUrl?: Maybe<string>, phone?: Maybe<string> }>, assurance?: Maybe<{ __typename?: 'Assurance', pictureUrl?: Maybe<string>, name?: Maybe<string> }> }>>> };
 
+export type GetAssurancesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAssurancesQuery = { __typename?: 'Query', assurances?: Maybe<Array<Maybe<{ __typename?: 'Assurance', name?: Maybe<string>, id: number }>>> };
+
 export type GetEmployeeQueryVariables = Exact<{
   employeeId: Scalars['Int'];
 }>;
@@ -605,6 +610,41 @@ export function useGetAppointmentsLazyQuery(baseOptions?: Apollo.LazyQueryHookOp
 export type GetAppointmentsQueryHookResult = ReturnType<typeof useGetAppointmentsQuery>;
 export type GetAppointmentsLazyQueryHookResult = ReturnType<typeof useGetAppointmentsLazyQuery>;
 export type GetAppointmentsQueryResult = Apollo.QueryResult<GetAppointmentsQuery, GetAppointmentsQueryVariables>;
+export const GetAssurancesDocument = gql`
+    query GetAssurances {
+  assurances {
+    name
+    id
+  }
+}
+    `;
+
+/**
+ * __useGetAssurancesQuery__
+ *
+ * To run a query within a React component, call `useGetAssurancesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAssurancesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAssurancesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetAssurancesQuery(baseOptions?: Apollo.QueryHookOptions<GetAssurancesQuery, GetAssurancesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAssurancesQuery, GetAssurancesQueryVariables>(GetAssurancesDocument, options);
+      }
+export function useGetAssurancesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAssurancesQuery, GetAssurancesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAssurancesQuery, GetAssurancesQueryVariables>(GetAssurancesDocument, options);
+        }
+export type GetAssurancesQueryHookResult = ReturnType<typeof useGetAssurancesQuery>;
+export type GetAssurancesLazyQueryHookResult = ReturnType<typeof useGetAssurancesLazyQuery>;
+export type GetAssurancesQueryResult = Apollo.QueryResult<GetAssurancesQuery, GetAssurancesQueryVariables>;
 export const GetEmployeeDocument = gql`
     query getEmployee($employeeId: Int!) {
   employee(employeeId: $employeeId) {

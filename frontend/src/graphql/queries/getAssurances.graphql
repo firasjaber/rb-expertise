@@ -1,0 +1,6 @@
+query GetAssurances {
+  assurances {
+    name
+    id
+  }
+}
