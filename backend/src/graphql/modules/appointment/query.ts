@@ -14,9 +14,12 @@ export const AppointmentQuery = extendType({
       resolve(_root, args, ctx) {
         if (!args.active) {
           const searchQ = args.searchQuery ?? undefined;
-          return ctx.prisma.appointment.findMany({ where: { title: { contains: searchQ } } });
+          return ctx.prisma.appointment.findMany({
+            where: { title: { contains: searchQ } },
+            orderBy: { createdAt: 'desc' },
+          });
         } else {
-          return ctx.prisma.appointment.findMany({ where: { resolved: false } });
+          return ctx.prisma.appointment.findMany({ where: { resolved: false }, orderBy: { createdAt: 'desc' } });
         }
       },
     });

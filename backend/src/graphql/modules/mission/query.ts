@@ -14,9 +14,12 @@ export const MissionQuery = extendType({
       resolve(_root, args, ctx) {
         if (!args.active) {
           const searchQ = args.searchQuery ?? undefined;
-          return ctx.prisma.mission.findMany({ where: { title: { contains: searchQ } } });
+          return ctx.prisma.mission.findMany({
+            where: { title: { contains: searchQ } },
+            orderBy: { createdAt: 'desc' },
+          });
         } else {
-          return ctx.prisma.mission.findMany({ where: { finished: false } });
+          return ctx.prisma.mission.findMany({ where: { finished: false }, orderBy: { createdAt: 'desc' } });
         }
       },
     });

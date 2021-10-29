@@ -21,7 +21,7 @@ const QuickStats = ({ stats }: Props) => {
           <div className='text-gray-500 text-lg space-y-1'>
             <div className='text-xl'>Employees</div>
             <div className='text-gray-800 text-5xl font-bold'>
-              {minTwoDigits(stats.employeesNumber)}
+              {minTwoDigits(stats.employeesNumber ?? 0)}
             </div>
             <div className='text-base'>total employees</div>
           </div>
@@ -33,10 +33,11 @@ const QuickStats = ({ stats }: Props) => {
           <div className='text-gray-500 text-lg space-y-1'>
             <div className='text-xl'>Appointments</div>
             <div className='text-gray-800 text-5xl font-bold'>
-              {minTwoDigits(stats.appointmentNumber)}
+              {minTwoDigits(stats.appointmentNumber ?? 0)}
             </div>
             <div className='text-base'>
-              {minTwoDigits(stats.activeAppointmentsNumber)} active appointments
+              {minTwoDigits(stats.activeAppointmentsNumber ?? 0)} active
+              appointments
             </div>
           </div>
           <div className=''>
@@ -47,10 +48,10 @@ const QuickStats = ({ stats }: Props) => {
           <div className='text-gray-500 text-lg space-y-1'>
             <div className='text-xl'>Missions</div>
             <div className='text-gray-800 text-5xl font-bold'>
-              {minTwoDigits(stats.missionsNumber)}
+              {minTwoDigits(stats.missionsNumber ?? 0)}
             </div>
             <div className='text-base'>
-              {minTwoDigits(stats.activeMissionsNumber)} active missions
+              {minTwoDigits(stats.activeMissionsNumber ?? 0)} active missions
             </div>
           </div>
           <div className=''>
