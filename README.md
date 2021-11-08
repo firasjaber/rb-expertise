@@ -6,7 +6,7 @@
 
 - you need docker to run the dev environment
 - first clone the repo
-  ` mkdir rb git && clone https://github.com/firasjaber/rb-expertise/ rb`
+  ` mkdir rb && git clone https://github.com/firasjaber/rb-expertise/ rb`
 - then execute the docker-compose file
   ` docker-compose up`
 - API Resolvers integration tests
